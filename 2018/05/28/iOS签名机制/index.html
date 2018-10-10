@@ -115,7 +115,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#身份认证"><span class="toc-number">2.</span> <span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对称密钥"><span class="toc-number">3.</span> <span class="toc-text">对称密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#公开密钥"><span class="toc-number">4.</span> <span class="toc-text">公开密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字签名"><span class="toc-number">5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字证书"><span class="toc-number">6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-签名机制"><span class="toc-number">7.</span> <span class="toc-text">iOS 签名机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">8.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">对称密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">公开密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">iOS 签名机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -127,7 +127,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -136,7 +136,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -217,7 +217,10 @@ crossorigin="anonymous"></script>
 
 
 
-
+	
+	
+	
+	
 
 
 
@@ -283,7 +286,7 @@ crossorigin="anonymous"></script>
     <!-- Date and Author -->
     <div class='article-meta'>
     <ul>
-            <li><i class='fa fa-calendar'></i> 2018-05-28</li>
+            <li><i class='fa fa-calendar'></i> 2018年05月28日</li>
             
             <li><i class="fa fa-user"></i> 曹培</li>
             <li><i class="fas fa-copyright"></i>
@@ -292,7 +295,10 @@ crossorigin="anonymous"></script>
                 
             
             
-                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/>CC BY-NC-ND 4.0</a>
+                
+                    
+                
+                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh>CC BY-NC-ND 4.0</a>
             
             </li>
     </ul>
@@ -363,9 +369,11 @@ crossorigin="anonymous"></script>
   <h3>Quick Read</h3>
 </div>
 <div class="card-text">
-  <p id='text-post-summary'>引言曾几何时，人类变得越来越聪明，慢慢地，个体之间的信任问题也成了科技发展历程中的那条鲶鱼。
+  <p id='text-post-summary'>引言
+曾几何时，人类变得越来越聪明，慢慢地，个体之间的信任问题也成了科技发展历程中的那条鲶鱼。
 前段时间在了解 iOS 逆向开发时都是在越狱设备上进行修改、调试。若想在非越狱设备上“非法”安装 APP ，这事儿就变得没那么简单了。但是如果我们知道 Apple 对我们的 APP 都做了哪些防护处理，理论上是可以越过AppStore 直接在非越狱设备上安装应用的。在此之前有必要先了解一些身份认证相关的知识点。
-身份认证认证就意味着，需要你提供一些身份证明，来证明你是谁。HTTP 提供了一个原生的 质询/响应框架（challenge/response） ：Web 应用程序收到一条 HTTP...</p>
+身份认证
+认证就意味着，需要你提供一些身份证明，来证明你是谁。HTTP 提供了一个原生的 质询/响应框架（challenge/response） ：Web 应用程序收到一条 HTTP...</p>
 </div>
         </div> -->
     </div>
@@ -383,7 +391,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#身份认证"><span class="toc-number">2.</span> <span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对称密钥"><span class="toc-number">3.</span> <span class="toc-text">对称密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#公开密钥"><span class="toc-number">4.</span> <span class="toc-text">公开密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字签名"><span class="toc-number">5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字证书"><span class="toc-number">6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-签名机制"><span class="toc-number">7.</span> <span class="toc-text">iOS 签名机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">8.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">对称密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">公开密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">iOS 签名机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -391,29 +399,37 @@ crossorigin="anonymous"></script>
 
     </div>
     <div class='article-content'>
-    <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>曾几何时，人类变得越来越聪明，慢慢地，个体之间的信任问题也成了科技发展历程中的那条鲶鱼。</p>
+    <h2>引言</h2>
+<p>曾几何时，人类变得越来越聪明，慢慢地，个体之间的信任问题也成了科技发展历程中的那条鲶鱼。</p>
 <p>前段时间在了解 iOS 逆向开发时都是在越狱设备上进行修改、调试。若想在非越狱设备上“非法”安装 APP ，这事儿就变得没那么简单了。但是如果我们知道 Apple 对我们的 APP 都做了哪些防护处理，理论上是可以越过AppStore 直接在非越狱设备上安装应用的。在此之前有必要先了解一些身份认证相关的知识点。</p>
-<h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><p>认证就意味着，需要你提供一些身份证明，来证明你是谁。HTTP 提供了一个原生的 <em>质询/响应框架（challenge/response）</em> ：Web 应用程序收到一条 HTTP 请求报文时，服务器没有按照请求执行动作，而是以一个“认证询问”进行响应，要求用户提供一些保密信息来证明他是谁。</p>
+<h2>身份认证</h2>
+<p>认证就意味着，需要你提供一些身份证明，来证明你是谁。HTTP 提供了一个原生的 <em>质询/响应框架（challenge/response）</em> ：Web 应用程序收到一条 HTTP 请求报文时，服务器没有按照请求执行动作，而是以一个“认证询问”进行响应，要求用户提供一些保密信息来证明他是谁。</p>
 <p>HTTP 通过一组可定制的控制首部，为不同的认证协议提供了一个可拓展框架。 两个官方的认证协议：基本认证、摘要认证。</p>
-<p><strong>基本认证：</strong>浏览器收到来自服务器的质询时，请求用户输入这个安全域的用户名和密码，然后将用户名和密码稍加干扰码发送给服务器去认证身份，服务器对用户名和密码进行解码，验证其正确性。使用 <strong>Base-64</strong> 编码方式可以对信息进行扰乱，这样可以防止敏感信息被不小心注意到。虽然简单便捷，但不安全，很容易被中间人通过反编码过程进行解码。只能用它来防止非恶意用户无意间进行访问，或将其与 SSL 这样的加密技术配合使用。所以经过 Base-64 编码的密码实际上就是“明文”传送。假冒服务器也可以很容易骗过基本认证。</p>
-<p><strong>摘要认证：</strong>又称为单向散列函数、哈希函数或加密的校验和。是另一种 HTTP 认证协议，与基本认证兼容，但却更为安全。主要表现为：不会以明文方式在网络上发送信息；可以防止数据内容被篡改。摘要是一种单向函数，主要用于将无限的输入值转换为有限的浓缩输出值，而且这个过程是不可逆的。常见的摘要函数有 <strong>MD5</strong>，会将任意长度的字节序列转换为一个 128 位的摘要。<strong>安全散列算法</strong>（ <strong>SHA-3</strong>） 是另一种常见的摘要函数。</p>
-<h2 id="对称密钥"><a href="#对称密钥" class="headerlink" title="对称密钥"></a>对称密钥</h2><p>前面提到的认证技术，对很多网络事务来说都能很好的工作，但在充满各种利益驱动和而已对手的环境中，对于一些大规模的购物、银行事务来说，并不足够强大。这些更重要的事务需要将 HTTP 和数字加密技术结合起来使用。</p>
+<p>**基本认证：**浏览器收到来自服务器的质询时，请求用户输入这个安全域的用户名和密码，然后将用户名和密码稍加干扰码发送给服务器去认证身份，服务器对用户名和密码进行解码，验证其正确性。使用 <strong>Base-64</strong> 编码方式可以对信息进行扰乱，这样可以防止敏感信息被不小心注意到。虽然简单便捷，但不安全，很容易被中间人通过反编码过程进行解码。只能用它来防止非恶意用户无意间进行访问，或将其与 SSL 这样的加密技术配合使用。所以经过 Base-64 编码的密码实际上就是“明文”传送。假冒服务器也可以很容易骗过基本认证。</p>
+<p>**摘要认证：**又称为单向散列函数、哈希函数或加密的校验和。是另一种 HTTP 认证协议，与基本认证兼容，但却更为安全。主要表现为：不会以明文方式在网络上发送信息；可以防止数据内容被篡改。摘要是一种单向函数，主要用于将无限的输入值转换为有限的浓缩输出值，而且这个过程是不可逆的。常见的摘要函数有 <strong>MD5</strong>，会将任意长度的字节序列转换为一个 128 位的摘要。<strong>安全散列算法</strong>（ <strong>SHA-3</strong>） 是另一种常见的摘要函数。</p>
+<h2>对称密钥</h2>
+<p>前面提到的认证技术，对很多网络事务来说都能很好的工作，但在充满各种利益驱动和而已对手的环境中，对于一些大规模的购物、银行事务来说，并不足够强大。这些更重要的事务需要将 HTTP 和数字加密技术结合起来使用。</p>
 <p><strong>密码</strong>是一种编码方案，加密之前的原始报文通常称为<strong>明文</strong>，使用了密码之后的编码报文通常称为<strong>密文</strong>。<strong>密钥</strong>就是改变密码行为的数字化参数，要在密码机上输入正确的密钥，解密过程才能正确进行。每个密码机都有不同的密钥值，每个密钥值对应着不同的加密算法。密钥越长，编码的组合就越多。</p>
 <p>在对称密钥加密技术中，发送端使用的加密密钥和接收端解密用的密钥是相同的密钥。在很多情况下，编/解码算法都是众所周知的，这时密钥的机密状态就是很重要的了。以此在发送者和接收者相互对话之前，一定会有一个共享保密密钥的过程，这个传输过程就未必安全了。而且面对 N 个节点需要使用 N^2 个密钥。DES、3DES已经不安全了，目前 <strong>AES</strong> 取代 DES 成为新标准的一种对称加密算法。</p>
 <img src="/2018/05/28/iOS签名机制/1.png" class="[机型]" title="[100][100]">
-<h2 id="公开密钥"><a href="#公开密钥" class="headerlink" title="公开密钥"></a>公开密钥</h2><p>公开密钥加密技术使用的是非对称密钥。加密密钥是可以公开的<strong>公钥</strong>（public key），但用来解密的<strong>私钥</strong>（private key）由主机自己保管。很好的解决了对称密钥加密中对密钥数目的 N^2 扩展问题。虽然解决了对称密钥加密的不安全性，但是在单个任务执行速度上会比对称加密慢很多。</p>
+<h2>公开密钥</h2>
+<p>公开密钥加密技术使用的是非对称密钥。加密密钥是可以公开的<strong>公钥</strong>（public key），但用来解密的<strong>私钥</strong>（private key）由主机自己保管。很好的解决了对称密钥加密中对密钥数目的 N^2 扩展问题。虽然解决了对称密钥加密的不安全性，但是在单个任务执行速度上会比对称加密慢很多。</p>
 <img src="/2018/05/28/iOS签名机制/2.png" class="[机型]" title="[100][100]">
 <p><strong>RSA</strong> 算法就是一个公开密钥加密系统。</p>
 <p><strong>混合密码系统</strong>：在两个节点间的通信，通过生成临时会话密钥，用以快速地对称加密明文消息。然后再通过共享的公钥对临时密钥进行安全的非对称加密。解密过程与之相反。</p>
 <img src="/2018/05/28/iOS签名机制/3.png" class="[机型]" title="[100][100]">
-<h2 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h2><p>数字签名就是附加在报文上的特殊计算出来的加密校验码。它可以验证报文内容是否被篡改，但不是用来保证报文的机密性。通常是用非对称公开密钥技术产生。首先使用摘要函数将报文数据转换为固定长度的散列值；使用“指纹”一样的<strong>私钥</strong>对散列值进行加密；将加密的结果与原始报文数据一并发送给接收者。接收者则使用公开的<strong>公钥</strong>解密出相应的散列值，然后与接收到的原始报文数据产生的散列值进行比对。</p>
+<h2>数字签名</h2>
+<p>数字签名就是附加在报文上的特殊计算出来的加密校验码。它可以验证报文内容是否被篡改，但不是用来保证报文的机密性。通常是用非对称公开密钥技术产生。首先使用摘要函数将报文数据转换为固定长度的散列值；使用“指纹”一样的<strong>私钥</strong>对散列值进行加密；将加密的结果与原始报文数据一并发送给接收者。接收者则使用公开的<strong>公钥</strong>解密出相应的散列值，然后与接收到的原始报文数据产生的散列值进行比对。</p>
 <img src="/2018/05/28/iOS签名机制/4.png" class="[机型]" title="[100][100]">
-<h2 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h2><p>在验证签名之前，需要验证公钥的合法性。在这个环节中， <strong>证书</strong>（certs）却可以很好的胜任验证公钥合法性的任务。一些官方的“证书颁发机构”（<strong>Certificate Authority，CA</strong>）使用其自己的私钥对要传输信息进行二次数字签名生成证书，证书里面就包括对象的公钥、对象信息、证书有效期、证书颁发者及其它扩展信息。现在使用的大部分证书都是 <strong>X.509 v3</strong> 证书格式。</p>
+<h2>数字证书</h2>
+<p>在验证签名之前，需要验证公钥的合法性。在这个环节中， <strong>证书</strong>（certs）却可以很好的胜任验证公钥合法性的任务。一些官方的“证书颁发机构”（<strong>Certificate Authority，CA</strong>）使用其自己的私钥对要传输信息进行二次数字签名生成证书，证书里面就包括对象的公钥、对象信息、证书有效期、证书颁发者及其它扩展信息。现在使用的大部分证书都是 <strong>X.509 v3</strong> 证书格式。</p>
 <img src="/2018/05/28/iOS签名机制/5.png" class="[机型]" title="[100][100]">
-<h2 id="iOS-签名机制"><a href="#iOS-签名机制" class="headerlink" title="iOS 签名机制"></a>iOS 签名机制</h2><p>使用此机制可以确保安装到 iPhone 设备上的 APP 都是经过 Apple 官方允许的。</p>
+<h2>iOS 签名机制</h2>
+<p>使用此机制可以确保安装到 iPhone 设备上的 APP 都是经过 Apple 官方允许的。</p>
 <img src="/2018/05/28/iOS签名机制/6.png" class="[机型]" title="[100][100]">
 <img src="/2018/05/28/iOS签名机制/7.png" class="[机型]" title="[100][100]">
-<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><blockquote><p>第三部分 识别、认证与安全</p>
+<h2>参考文献：</h2>
+<blockquote><p>第三部分 识别、认证与安全</p>
 <footer><strong>HTTP权威指南</strong><cite>David Gourley等（著） 陈涓 赵振平（译）</cite></footer></blockquote>
     
     </div>
@@ -422,7 +438,7 @@ crossorigin="anonymous"></script>
         <div class="article-comment" id='article-comment'>
             
 
-<h1>Comment</h1>
+<h1>评论</h1>
 
   
     <div id="comment-not-available">
@@ -442,8 +458,8 @@ crossorigin="anonymous"></script>
 <footer id='footer'>
     <div class='footer-copyright'>
         <div>
-            <p> Copyright by <a href="">曹培 </a> @ 2018</p>
-            <p>Designed by: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> and <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; Theme: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; Powered by <a href="http://hexo.io">Hexo.</a></p>
+            <p> 版权所有 <a href="">曹培 </a> @ 2018</p>
+            <p>设计: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> 和 <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; 主题: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; 由 <a href="http://hexo.io">Hexo.</a> 强力驱动</p>
         </div>
     </div>
     
@@ -452,10 +468,6 @@ crossorigin="anonymous"></script>
             
                 
                     <div class='footer-social-item'><a href='https://github.com/ITEnthusiast' target='_blank' ><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
-                
-            
-                
-                    <div class='footer-social-item'><a href='https://www.jianshu.com/u/c3199741ad2c' target='_blank' ><i class="fab fa-简书 fa-2x" aria-hidden="true"></i></a></div>
                 
             
         
@@ -479,7 +491,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#身份认证"><span class="toc-number">2.</span> <span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对称密钥"><span class="toc-number">3.</span> <span class="toc-text">对称密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#公开密钥"><span class="toc-number">4.</span> <span class="toc-text">公开密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字签名"><span class="toc-number">5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字证书"><span class="toc-number">6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-签名机制"><span class="toc-number">7.</span> <span class="toc-text">iOS 签名机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">8.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">对称密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">公开密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">iOS 签名机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -491,7 +503,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -500,7 +512,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -599,7 +611,7 @@ crossorigin="anonymous"></script>
   loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
   loadjs.ready('post-version', function(){
     
-    new Postv2('hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5').update('hashit_4dfd850e2b74907718ca2e3073ced6de5bc679f53c3bd48ec0602cfb51261973', function(){});
+    new Postv2('hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5').update('hashit_671b62ce36e2249737fbbc4add1f844352dba685f7e0e0cefb41d5fdf94f7bff', function(){});
   });
   
 </script>

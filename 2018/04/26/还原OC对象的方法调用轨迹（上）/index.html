@@ -115,7 +115,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC对象的本质"><span class="toc-number">2.</span> <span class="toc-text">OC对象的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC对象的分类"><span class="toc-number">3.</span> <span class="toc-text">OC对象的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#isa-amp-superclass"><span class="toc-number">4.</span> <span class="toc-text">isa &amp; superclass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#objc-class结构体源码小撇"><span class="toc-number">5.</span> <span class="toc-text">objc_class结构体源码小撇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">OC对象的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">OC对象的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">isa &amp; superclass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">objc_class结构体源码小撇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -127,7 +127,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -136,7 +136,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -217,7 +217,10 @@ crossorigin="anonymous"></script>
 
 
 
-
+	
+	
+	
+	
 
 
 
@@ -283,7 +286,7 @@ crossorigin="anonymous"></script>
     <!-- Date and Author -->
     <div class='article-meta'>
     <ul>
-            <li><i class='fa fa-calendar'></i> 2018-04-26</li>
+            <li><i class='fa fa-calendar'></i> 2018年04月26日</li>
             
             <li><i class="fa fa-user"></i> 曹培</li>
             <li><i class="fas fa-copyright"></i>
@@ -292,7 +295,10 @@ crossorigin="anonymous"></script>
                 
             
             
-                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/>CC BY-NC-ND 4.0</a>
+                
+                    
+                
+                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh>CC BY-NC-ND 4.0</a>
             
             </li>
     </ul>
@@ -359,7 +365,8 @@ crossorigin="anonymous"></script>
   <h3>Quick Read</h3>
 </div>
 <div class="card-text">
-  <p id='text-post-summary'>引言我们清楚编程语言函数调用的底层逻辑之后，其实再往上了解一些高级语言针对函数调用的包装思想，种类基本上就不统一了。很多语言，比如 C 语言，调用一个方法其实就是跳到内存中的某一点并开始执行一段代码，没有任何动态的特性，因为这一切在编译时就决定好了。 Objective-C 作为一门面向对象语言，它扩展 C 语言加入了面向对象特性和动态消息传递机制，其动态特性的基石便是它的 Runtime 库。在 Objective-C 中，
+  <p id='text-post-summary'>引言
+我们清楚编程语言函数调用的底层逻辑之后，其实再往上了解一些高级语言针对函数调用的包装思想，种类基本上就不统一了。很多语言，比如 C 语言，调用一个方法其实就是跳到内存中的某一点并开始执行一段代码，没有任何动态的特性，因为这一切在编译时就决定好了。 Objective-C 作为一门面向对象语言，它扩展 C 语言加入了面向对象特性和动态消息传递机制，其动态特性的基石便是它的 Runtime 库。在 Objective-C 中，
 1[object fun]
 并不会立即执行 fun 这个方法的代码，它是要在运行时给 object 发送一条叫 fun 的消息，这个消息也许会由 object...</p>
 </div>
@@ -379,7 +386,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC对象的本质"><span class="toc-number">2.</span> <span class="toc-text">OC对象的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC对象的分类"><span class="toc-number">3.</span> <span class="toc-text">OC对象的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#isa-amp-superclass"><span class="toc-number">4.</span> <span class="toc-text">isa &amp; superclass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#objc-class结构体源码小撇"><span class="toc-number">5.</span> <span class="toc-text">objc_class结构体源码小撇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">OC对象的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">OC对象的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">isa &amp; superclass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">objc_class结构体源码小撇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -387,16 +394,28 @@ crossorigin="anonymous"></script>
 
     </div>
     <div class='article-content'>
-    <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>我们清楚编程语言函数调用的底层逻辑之后，其实再往上了解一些高级语言针对函数调用的包装思想，种类基本上就不统一了。很多语言，比如 C 语言，调用一个方法其实就是跳到内存中的某一点并开始执行一段代码，没有任何动态的特性，因为这一切在编译时就决定好了。 Objective-C 作为一门面向对象语言，它扩展 C 语言加入了面向对象特性和动态消息传递机制，其动态特性的基石便是它的 Runtime 库。在 Objective-C 中，</p>
+    <h2>引言</h2>
+<p>我们清楚编程语言函数调用的底层逻辑之后，其实再往上了解一些高级语言针对函数调用的包装思想，种类基本上就不统一了。很多语言，比如 C 语言，调用一个方法其实就是跳到内存中的某一点并开始执行一段代码，没有任何动态的特性，因为这一切在编译时就决定好了。 Objective-C 作为一门面向对象语言，它扩展 C 语言加入了面向对象特性和动态消息传递机制，其动态特性的基石便是它的 Runtime 库。在 Objective-C 中，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[object fun]</span><br></pre></td></tr></table></figure>
 <p>并不会立即执行 fun 这个方法的代码，它是要在运行时给 object 发送一条叫 fun 的消息，这个消息也许会由 object 来处理，也许会被转发给另一个对象。</p>
-<h2 id="OC对象的本质"><a href="#OC对象的本质" class="headerlink" title="OC对象的本质"></a>OC对象的本质</h2><p>我们平时编写的 OC 代码，其底层实现其实都是 C／C++ 代码。实际上苹果只开放了一小部分源码，所以借助其底层语言可以帮助我们了解验证 OC 的一些本质性问题。OC世界中的“万物之源” NSObject 对象的底层实现是使用 C 语言的结构体。其中只有一个 Class（objc_class*）类型的 isa 指针（64位机器下实际只会占用8个字节，但是由于<a href="https://baike.baidu.com/item/内存对齐/9537460?fr=aladdin" target="_blank" rel="noopener">内存对齐</a> 的原因会被分配16字节空间）。至于继承自 NSObject 的自定义类，除了 isa 指针外还有其成员变量信息。</p>
-<h2 id="OC对象的分类"><a href="#OC对象的分类" class="headerlink" title="OC对象的分类"></a>OC对象的分类</h2><p>单就某一个类对象而言， OC 中的对象分为三种： <strong>instance 对象、 class 对象、 meta-class 对象</strong></p>
-<p><strong>instance对象</strong> 是通过 alloc 方法实例化出来的对象，每次 alloc 出来的对象都会被分配一个新地址来存储各自的信息，存储信息包括： isa 指针、成员变量的值。<br><br><strong>class对象 </strong>则是针对类本身而言的，每个类在内存中有且只有一份，相应的也是用来存放关于类的信息： isa 指针、 superclass 指针、类的属性信息、对象方法信息、协议信息及成员变量信息等等（注意：这里存放的是成员变量信息并非成员变量的值，比如成员变量的类型、名字等描述信息）。<br><br><strong>meta-class对象</strong> 跟 class 对象类似，也是针对类本身存在的，内存中有且只有一个该对象，结构也和 class 对象一样都是 Class（objc_class*）类型，只是用途不同，它主要用来放置： isa 指针、 superclass 指针及类的类方法信息。 class 和 meta-class 对象的本质结构都是 struct objc_class 类型的结构体，这个类型的结构体内部设置了存放该类有关所有信息的属性。</p>
-<h2 id="isa-amp-superclass"><a href="#isa-amp-superclass" class="headerlink" title="isa &amp; superclass"></a>isa &amp; superclass</h2><p>实际上这三种对象也是通过 isa 指针联系起来的：instance 对象的 isa 指针的值对应了 class 对象的地址，class 对象的 isa  指针的值对应了 meta-class 对象的地址，而 meta-class 对象的 isa 指针的值指向了基类的 meta-class 对象的地址（从64bit开始， isa 需要与特定的值 ISA_MASK 做一次位运算才能算出所指向的真实地址，这个 ISA_MASK ，源码中给出了不同设备架构对应的不同的值：arm64：ISA_MASK为0x0000000ffffffff8ULL；x86_64：为0x00007ffffffffff8ULL）<br><br>类有继承，在多重继承关系下则通过 superclass 指针将自身与父类及基类联系起来。由于 instance 对象中不含有 superclass 指针，所以实例对象与父类之间的联系均要通过 class 对象和 meta-class 对象中的 superclass 指针建立，这里可以结合这三种类分别存放了何种信息来理解。 class 对象的 superclass 指针指向的是其父类的 class 对象的地址，若其没父类（如：基类）则为 nil ； meta-class 对象的 superclass 指针指向的是父类的 meta-class 对象的地址，若其没父类（如：基类）则指向其 class 对象的地址。可以配合着网上流传的比较经典的图理解上述流程。<br><br><img src="/2018/04/26/还原OC对象的方法调用轨迹（上）/1.png" class="[还原OC对象的方法调用轨迹（上）]" title="[100][100]"></p>
+<h2>OC对象的本质</h2>
+<p>我们平时编写的 OC 代码，其底层实现其实都是 C／C++ 代码。实际上苹果只开放了一小部分源码，所以借助其底层语言可以帮助我们了解验证 OC 的一些本质性问题。OC世界中的“万物之源” NSObject 对象的底层实现是使用 C 语言的结构体。其中只有一个 Class（objc_class*）类型的 isa 指针（64位机器下实际只会占用8个字节，但是由于<a href="https://baike.baidu.com/item/内存对齐/9537460?fr=aladdin" target="_blank" rel="noopener">内存对齐</a> 的原因会被分配16字节空间）。至于继承自 NSObject 的自定义类，除了 isa 指针外还有其成员变量信息。</p>
+<h2>OC对象的分类</h2>
+<p>单就某一个类对象而言， OC 中的对象分为三种： <strong>instance 对象、 class 对象、 meta-class 对象</strong></p>
+<p><strong>instance对象</strong> 是通过 alloc 方法实例化出来的对象，每次 alloc 出来的对象都会被分配一个新地址来存储各自的信息，存储信息包括： isa 指针、成员变量的值。<br>
+**class对象 *<em>则是针对类本身而言的，每个类在内存中有且只有一份，相应的也是用来存放关于类的信息： isa 指针、 superclass 指针、类的属性信息、对象方法信息、协议信息及成员变量信息等等（注意：这里存放的是成员变量信息并非成员变量的值，比如成员变量的类型、名字等描述信息）。<br>
+<strong>meta-class对象</strong> 跟 class 对象类似，也是针对类本身存在的，内存中有且只有一个该对象，结构也和 class 对象一样都是 Class（objc_class</em>）类型，只是用途不同，它主要用来放置： isa 指针、 superclass 指针及类的类方法信息。 class 和 meta-class 对象的本质结构都是 struct objc_class 类型的结构体，这个类型的结构体内部设置了存放该类有关所有信息的属性。</p>
+<h2>isa &amp; superclass</h2>
+<p>实际上这三种对象也是通过 isa 指针联系起来的：instance 对象的 isa 指针的值对应了 class 对象的地址，class 对象的 isa  指针的值对应了 meta-class 对象的地址，而 meta-class 对象的 isa 指针的值指向了基类的 meta-class 对象的地址（从64bit开始， isa 需要与特定的值 ISA_MASK 做一次位运算才能算出所指向的真实地址，这个 ISA_MASK ，源码中给出了不同设备架构对应的不同的值：arm64：ISA_MASK为0x0000000ffffffff8ULL；x86_64：为0x00007ffffffffff8ULL）<br>
+类有继承，在多重继承关系下则通过 superclass 指针将自身与父类及基类联系起来。由于 instance 对象中不含有 superclass 指针，所以实例对象与父类之间的联系均要通过 class 对象和 meta-class 对象中的 superclass 指针建立，这里可以结合这三种类分别存放了何种信息来理解。 class 对象的 superclass 指针指向的是其父类的 class 对象的地址，若其没父类（如：基类）则为 nil ； meta-class 对象的 superclass 指针指向的是父类的 meta-class 对象的地址，若其没父类（如：基类）则指向其 class 对象的地址。可以配合着网上流传的比较经典的图理解上述流程。<br></p>
+<img src="/2018/04/26/还原OC对象的方法调用轨迹（上）/1.png" class="[还原OC对象的方法调用轨迹（上）]" title="[100][100]">
 <p>所以 instance 实例对象调用自身对象方法的轨迹为：通过 isa 找到自身的 class，方法若不存在，则通过 class 的 superclass 找到父类的 class 对象的该方法，以此类推找下去（若找到基类都没找到方法的实现，这时候就是发挥 OC 语言动态特性的时候了）；相似的， class 对象调用类方法的轨迹为：通过 class 对象的 isa 指针找到自身的 meta-class 对象，若其中没有该方法的实现部分，就通过 meta-class 对象的 superclass 指针找到父类的 meta-class 对象的该方法，以此类推找下去。</p>
-<h2 id="objc-class结构体源码小撇"><a href="#objc-class结构体源码小撇" class="headerlink" title="objc_class结构体源码小撇"></a>objc_class结构体源码小撇</h2><p>这里根据 objc 源码（C++编写）配合分析上述中提到的 objc_class 结构体的内部一些比较熟<br>悉的变量和函数。该结构体内部第一个变量就是 Class（objc_class*）类型的 isa 指针；同样类型的 superclass 指针；接着是 cache_t 类型（结构体）的 cache 变量，用来缓存该对象曾经调用过的方法的一些信息，比如有16字节的 capacity、 bucket_t 类型（结构体）的 _buckets： _key 和 _imp 等；还有一个 class_data_bits_t 类型（结构体）的 bits 变量，调用该结构体中的 data() 函数得到 class_rw_t 结构体类型的数据（拿bits与FAST_DATA_MASK进行位运算，源码中给出的值是0xfffffffcUL）。 class_rw_t 结构体中含有该类的方法列表 methods（数组）、属性列表 properties（数组）、协议列表 protocols（数组）、其中有个 class_ro_t 结构体类型的 ro 变量。 class_ro_t 结构体包含 instance 对象占用的内存空间大小 instanceSize 变量、类的名称 name 变量、成员变量列表 ivars 。<br><br>这里附上objc4的源码地址：<a href="https://opensource.apple.com/tarballs/objc4/" target="_blank" rel="noopener">https://opensource.apple.com/tarballs/objc4/</a></p>
-<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><blockquote><p>第二章：对象、消息、运行期</p>
+<h2>objc_class结构体源码小撇</h2>
+<p>这里根据 objc 源码（C++编写）配合分析上述中提到的 objc_class 结构体的内部一些比较熟
+悉的变量和函数。该结构体内部第一个变量就是 Class（objc_class*）类型的 isa 指针；同样类型的 superclass 指针；接着是 cache_t 类型（结构体）的 cache 变量，用来缓存该对象曾经调用过的方法的一些信息，比如有16字节的 capacity、 bucket_t 类型（结构体）的 _buckets： _key 和 _imp 等；还有一个 class_data_bits_t 类型（结构体）的 bits 变量，调用该结构体中的 data() 函数得到 class_rw_t 结构体类型的数据（拿bits与FAST_DATA_MASK进行位运算，源码中给出的值是0xfffffffcUL）。 class_rw_t 结构体中含有该类的方法列表 methods（数组）、属性列表 properties（数组）、协议列表 protocols（数组）、其中有个 class_ro_t 结构体类型的 ro 变量。 class_ro_t 结构体包含 instance 对象占用的内存空间大小 instanceSize 变量、类的名称 name 变量、成员变量列表 ivars 。<br>
+这里附上objc4的源码地址：<a href="https://opensource.apple.com/tarballs/objc4/" target="_blank" rel="noopener">https://opensource.apple.com/tarballs/objc4/</a></p>
+<h2>参考文献：</h2>
+<blockquote><p>第二章：对象、消息、运行期</p>
 <footer><strong>Effective Objective-C 2.0</strong><cite>Matt Galloway（著） 爱飞翔（译）</cite></footer></blockquote>
     
     </div>
@@ -405,7 +424,7 @@ crossorigin="anonymous"></script>
         <div class="article-comment" id='article-comment'>
             
 
-<h1>Comment</h1>
+<h1>评论</h1>
 
   
     <div id="comment-not-available">
@@ -425,8 +444,8 @@ crossorigin="anonymous"></script>
 <footer id='footer'>
     <div class='footer-copyright'>
         <div>
-            <p> Copyright by <a href="">曹培 </a> @ 2018</p>
-            <p>Designed by: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> and <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; Theme: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; Powered by <a href="http://hexo.io">Hexo.</a></p>
+            <p> 版权所有 <a href="">曹培 </a> @ 2018</p>
+            <p>设计: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> 和 <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; 主题: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; 由 <a href="http://hexo.io">Hexo.</a> 强力驱动</p>
         </div>
     </div>
     
@@ -435,10 +454,6 @@ crossorigin="anonymous"></script>
             
                 
                     <div class='footer-social-item'><a href='https://github.com/ITEnthusiast' target='_blank' ><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
-                
-            
-                
-                    <div class='footer-social-item'><a href='https://www.jianshu.com/u/c3199741ad2c' target='_blank' ><i class="fab fa-简书 fa-2x" aria-hidden="true"></i></a></div>
                 
             
         
@@ -462,7 +477,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC对象的本质"><span class="toc-number">2.</span> <span class="toc-text">OC对象的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC对象的分类"><span class="toc-number">3.</span> <span class="toc-text">OC对象的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#isa-amp-superclass"><span class="toc-number">4.</span> <span class="toc-text">isa &amp; superclass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#objc-class结构体源码小撇"><span class="toc-number">5.</span> <span class="toc-text">objc_class结构体源码小撇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">OC对象的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">OC对象的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">isa &amp; superclass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">objc_class结构体源码小撇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -474,7 +489,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -483,7 +498,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -582,7 +597,7 @@ crossorigin="anonymous"></script>
   loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
   loadjs.ready('post-version', function(){
     
-    new Postv2('hashit_d9de328ba84e787cc170487de2c5e66cb51040c1f1322dcbf1e0663e2847dea7').update('hashit_e98fa1b2b2d80e68928f0af90ee349af0d2872e6567d1a63170c88b969dd71e1', function(){});
+    new Postv2('hashit_d9de328ba84e787cc170487de2c5e66cb51040c1f1322dcbf1e0663e2847dea7').update('hashit_7c48b9ffb04d263f894cdeea88865cd82603d1ae9166c446c0490880d5ffa640', function(){});
   });
   
 </script>

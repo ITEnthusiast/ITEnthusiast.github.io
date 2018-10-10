@@ -115,7 +115,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加壳"><span class="toc-number">2.</span> <span class="toc-text">加壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脱壳"><span class="toc-number">3.</span> <span class="toc-text">脱壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脱壳工具一：Clutch"><span class="toc-number">4.</span> <span class="toc-text">脱壳工具一：Clutch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脱壳工具二：dumpdecryted"><span class="toc-number">5.</span> <span class="toc-text">脱壳工具二：dumpdecryted</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">加壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">脱壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">脱壳工具一：Clutch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">脱壳工具二：dumpdecryted</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -127,7 +127,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -136,7 +136,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -217,7 +217,10 @@ crossorigin="anonymous"></script>
 
 
 
-
+	
+	
+	
+	
 
 
 
@@ -283,7 +286,7 @@ crossorigin="anonymous"></script>
     <!-- Date and Author -->
     <div class='article-meta'>
     <ul>
-            <li><i class='fa fa-calendar'></i> 2018-05-13</li>
+            <li><i class='fa fa-calendar'></i> 2018年05月13日</li>
             
             <li><i class="fa fa-user"></i> 曹培</li>
             <li><i class="fas fa-copyright"></i>
@@ -292,7 +295,10 @@ crossorigin="anonymous"></script>
                 
             
             
-                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/>CC BY-NC-ND 4.0</a>
+                
+                    
+                
+                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh>CC BY-NC-ND 4.0</a>
             
             </li>
     </ul>
@@ -359,10 +365,13 @@ crossorigin="anonymous"></script>
   <h3>Quick Read</h3>
 </div>
 <div class="card-text">
-  <p id='text-post-summary'>引言从 AppStore 下载的 App 都是经过加密过的，可执行文件被加上了一层“壳”。在这种情况下，想要获取头文件，需要先解密 App 的可执行文件，俗称“脱壳”。
-加壳利用特殊的算法，对可执行文件的编码进行压缩、加密，以达到保护程序代码的目的。加密后的可执行文件在被载入内存前，在文件外围会有一个壳程序。载入内存后，执行壳程序会对之前的加密操作进行解密，原可执行文件才得以运行。
+  <p id='text-post-summary'>引言
+从 AppStore 下载的 App 都是经过加密过的，可执行文件被加上了一层“壳”。在这种情况下，想要获取头文件，需要先解密 App 的可执行文件，俗称“脱壳”。
+加壳
+利用特殊的算法，对可执行文件的编码进行压缩、加密，以达到保护程序代码的目的。加密后的可执行文件在被载入内存前，在文件外围会有一个壳程序。载入内存后，执行壳程序会对之前的加密操作进行解密，原可执行文件才得以运行。
 
 验证可执行文件是否被加密
+
 otool -l 文件路径 | grep...</p>
 </div>
         </div> -->
@@ -381,7 +390,7 @@ otool -l 文件路径 | grep...</p>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加壳"><span class="toc-number">2.</span> <span class="toc-text">加壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脱壳"><span class="toc-number">3.</span> <span class="toc-text">脱壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脱壳工具一：Clutch"><span class="toc-number">4.</span> <span class="toc-text">脱壳工具一：Clutch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脱壳工具二：dumpdecryted"><span class="toc-number">5.</span> <span class="toc-text">脱壳工具二：dumpdecryted</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">加壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">脱壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">脱壳工具一：Clutch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">脱壳工具二：dumpdecryted</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -389,37 +398,47 @@ otool -l 文件路径 | grep...</p>
 
     </div>
     <div class='article-content'>
-    <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>从 AppStore 下载的 App 都是经过加密过的，可执行文件被加上了一层“壳”。在这种情况下，想要获取头文件，需要先解密 App 的可执行文件，俗称“脱壳”。</p>
-<h2 id="加壳"><a href="#加壳" class="headerlink" title="加壳"></a>加壳</h2><p>利用特殊的算法，对可执行文件的编码进行压缩、加密，以达到保护程序代码的目的。加密后的可执行文件在被载入内存前，在文件外围会有一个壳程序。载入内存后，执行壳程序会对之前的加密操作进行解密，原可执行文件才得以运行。</p>
+    <h2>引言</h2>
+<p>从 AppStore 下载的 App 都是经过加密过的，可执行文件被加上了一层“壳”。在这种情况下，想要获取头文件，需要先解密 App 的可执行文件，俗称“脱壳”。</p>
+<h2>加壳</h2>
+<p>利用特殊的算法，对可执行文件的编码进行压缩、加密，以达到保护程序代码的目的。加密后的可执行文件在被载入内存前，在文件外围会有一个壳程序。载入内存后，执行壳程序会对之前的加密操作进行解密，原可执行文件才得以运行。</p>
 <ul>
-<li>验证可执行文件是否被加密<ul>
-<li><code>otool -l 文件路径 | grep cryptid</code><ul>
-<li><img src="/2018/05/13/想知道的更多，先给你的APP脱壳吧/1.png" class="[机型]" title="[100][100]"></li>
-</ul>
-</li>
-<li>MachOView工具查看<ul>
-<li><img src="/2018/05/13/想知道的更多，先给你的APP脱壳吧/2.png" class="[机型]" title="[100][100]">
-</li>
-</ul>
+<li>验证可执行文件是否被加密
+<ul>
+<li><code>otool -l 文件路径 | grep cryptid</code>
+<ul>
+<li>
+<img src="/2018/05/13/想知道的更多，先给你的APP脱壳吧/1.png" class="[机型]" title="[100][100]">
 </li>
 </ul>
 </li>
+<li>MachOView工具查看</li>
+<li>
+<img src="/2018/05/13/想知道的更多，先给你的APP脱壳吧/2.png" class="[机型]" title="[100][100]">
+</li>
 </ul>
-<h2 id="脱壳"><a href="#脱壳" class="headerlink" title="脱壳"></a>脱壳</h2><ul>
+</li>
+</ul>
+<h2>脱壳</h2>
+<ul>
 <li>脱壳只是为了拿到里面的头文件内容，并不影响Tweak过程。</li>
-<li>硬脱壳<ul>
+<li>硬脱壳
+<ul>
 <li>在知道加密算法的前提下，执行解密算法还原出加密前的可执行文件。</li>
 <li>iOS逆向普遍采取硬脱壳的方式。</li>
 </ul>
 </li>
-<li>动态脱壳<ul>
+<li>动态脱壳
+<ul>
 <li>仍然将加密后的可执行文件同壳程序一起载入内存运行，利用壳程序执行完解密操作后，将解密后的可执行文件从内存中导出。</li>
 </ul>
 </li>
 </ul>
-<h2 id="脱壳工具一：Clutch"><a href="#脱壳工具一：Clutch" class="headerlink" title="脱壳工具一：Clutch"></a>脱壳工具一：Clutch</h2><ul>
+<h2>脱壳工具一：Clutch</h2>
+<ul>
 <li>下载地址： <a href="https://github.com/KJCracks/Clutch" target="_blank" rel="noopener">https://github.com/KJCracks/Clutch</a></li>
-<li>将Clutch文件拷贝到 iPhone 的  <code>usr/bin</code> 目录下<ul>
+<li>将Clutch文件拷贝到 iPhone 的  <code>usr/bin</code> 目录下
+<ul>
 <li>若提示权限不够，执行：<code>chmod +x /usr/bin/Clutch</code></li>
 </ul>
 </li>
@@ -427,25 +446,33 @@ otool -l 文件路径 | grep...</p>
 <li>脱壳操作：<code>Clutch -d App序号或&lt;BundleId&gt;</code></li>
 <li>脱壳的结果是<code>.ipa包</code>。</li>
 </ul>
-<h2 id="脱壳工具二：dumpdecryted"><a href="#脱壳工具二：dumpdecryted" class="headerlink" title="脱壳工具二：dumpdecryted"></a>脱壳工具二：dumpdecryted</h2><ul>
+<h2>脱壳工具二：dumpdecryted</h2>
+<ul>
 <li>下载地址： <a href="https://github.com/stefanesser/dumpdecrypted" target="_blank" rel="noopener">https://github.com/stefanesser/dumpdecrypted</a></li>
-<li>来到文件路径，执行 <code>make</code> 指令进行编译，生成 <code>.dylib</code>动态库文件<ul>
-<li><img src="/2018/05/13/想知道的更多，先给你的APP脱壳吧/3.png" class="[机型]" title="[100][100]"></li>
+<li>来到文件路径，执行 <code>make</code> 指令进行编译，生成 <code>.dylib</code>动态库文件
+<ul>
+<li>
+<img src="/2018/05/13/想知道的更多，先给你的APP脱壳吧/3.png" class="[机型]" title="[100][100]">
+</li>
 <li>解决方案：尝试先安装 theos 工具</li>
 </ul>
 </li>
 <li>将.dylib动态库文件拷贝到 iPhone 的 <code>/var/root</code> 目录下</li>
-<li>使用环境变量 <code>DYLD_INSERT_LIBRARIES</code> 将 <code>.dylib</code> 动态库文件注入到待脱壳程序中。<ul>
+<li>使用环境变量 <code>DYLD_INSERT_LIBRARIES</code> 将 <code>.dylib</code> 动态库文件注入到待脱壳程序中。
+<ul>
 <li><code>DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib 待脱壳程序路径</code></li>
 </ul>
 </li>
-<li>脱壳的结果是一个 Mach-O 文件。<ul>
-<li><img src="/2018/05/13/想知道的更多，先给你的APP脱壳吧/4.png" class="[机型]" title="[100][100]">
+<li>脱壳的结果是一个 Mach-O 文件。
+<ul>
+<li>
+<img src="/2018/05/13/想知道的更多，先给你的APP脱壳吧/4.png" class="[机型]" title="[100][100]">
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><blockquote><p>第4章 iOS工具集-dumpdecryted</p>
+<h2>参考文献：</h2>
+<blockquote><p>第4章 iOS工具集-dumpdecryted</p>
 <footer><strong>iOS应用逆向工程 第二版</strong><cite>沙梓社 吴航（著）</cite></footer></blockquote>
     
     </div>
@@ -454,7 +481,7 @@ otool -l 文件路径 | grep...</p>
         <div class="article-comment" id='article-comment'>
             
 
-<h1>Comment</h1>
+<h1>评论</h1>
 
   
     <div id="comment-not-available">
@@ -474,8 +501,8 @@ otool -l 文件路径 | grep...</p>
 <footer id='footer'>
     <div class='footer-copyright'>
         <div>
-            <p> Copyright by <a href="">曹培 </a> @ 2018</p>
-            <p>Designed by: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> and <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; Theme: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; Powered by <a href="http://hexo.io">Hexo.</a></p>
+            <p> 版权所有 <a href="">曹培 </a> @ 2018</p>
+            <p>设计: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> 和 <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; 主题: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; 由 <a href="http://hexo.io">Hexo.</a> 强力驱动</p>
         </div>
     </div>
     
@@ -484,10 +511,6 @@ otool -l 文件路径 | grep...</p>
             
                 
                     <div class='footer-social-item'><a href='https://github.com/ITEnthusiast' target='_blank' ><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
-                
-            
-                
-                    <div class='footer-social-item'><a href='https://www.jianshu.com/u/c3199741ad2c' target='_blank' ><i class="fab fa-简书 fa-2x" aria-hidden="true"></i></a></div>
                 
             
         
@@ -511,7 +534,7 @@ otool -l 文件路径 | grep...</p>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加壳"><span class="toc-number">2.</span> <span class="toc-text">加壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脱壳"><span class="toc-number">3.</span> <span class="toc-text">脱壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脱壳工具一：Clutch"><span class="toc-number">4.</span> <span class="toc-text">脱壳工具一：Clutch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脱壳工具二：dumpdecryted"><span class="toc-number">5.</span> <span class="toc-text">脱壳工具二：dumpdecryted</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">加壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">脱壳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">脱壳工具一：Clutch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">脱壳工具二：dumpdecryted</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -523,7 +546,7 @@ otool -l 文件路径 | grep...</p>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -532,7 +555,7 @@ otool -l 文件路径 | grep...</p>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -631,7 +654,7 @@ otool -l 文件路径 | grep...</p>
   loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
   loadjs.ready('post-version', function(){
     
-    new Postv2('hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d').update('hashit_d30f3168190cf0bab55621b69879f508701c9942ac3cdaa622a064730276f9e2', function(){});
+    new Postv2('hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d').update('hashit_6a095a76086f6d6788eaacb24ab88edf0d002f5d85620dd84a907f858d819e59', function(){});
   });
   
 </script>

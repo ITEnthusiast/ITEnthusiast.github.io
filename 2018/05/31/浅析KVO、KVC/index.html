@@ -115,7 +115,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#KVO"><span class="toc-number">1.</span> <span class="toc-text">KVO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KVC"><span class="toc-number">2.</span> <span class="toc-text">KVC</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">KVO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">KVC</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -127,7 +127,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -136,7 +136,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -217,7 +217,10 @@ crossorigin="anonymous"></script>
 
 
 
-
+	
+	
+	
+	
 
 
 
@@ -283,7 +286,7 @@ crossorigin="anonymous"></script>
     <!-- Date and Author -->
     <div class='article-meta'>
     <ul>
-            <li><i class='fa fa-calendar'></i> 2018-05-31</li>
+            <li><i class='fa fa-calendar'></i> 2018年05月31日</li>
             
             <li><i class="fa fa-user"></i> 曹培</li>
             <li><i class="fas fa-copyright"></i>
@@ -292,7 +295,10 @@ crossorigin="anonymous"></script>
                 
             
             
-                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/>CC BY-NC-ND 4.0</a>
+                
+                    
+                
+                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh>CC BY-NC-ND 4.0</a>
             
             </li>
     </ul>
@@ -359,7 +365,8 @@ crossorigin="anonymous"></script>
   <h3>Quick Read</h3>
 </div>
 <div class="card-text">
-  <p id='text-post-summary'>KVOKey-Value Observing，“键值监听”：用于监听某一对象属性值的改变。
+  <p id='text-post-summary'>KVO
+Key-Value Observing，“键值监听”：用于监听某一对象属性值的改变。
 某一对象被监听后，系统利用 Runtime API 对该对象的原始类动态生成一个      “NSKVONotifying_CPPerson” 子类，并且让 instance 对象的 isa 指针指向这个子类。
 在新生成的这个子类中会重写父类的 setAge:、class、dealloc、_isKVOA 四个方法。
 当被监听对象的属性值发生改变后，会在 setAge: 方法中调用 NSFoundation 的 “_NSSetIntValueAndNotify” 函数。且在该函数内部重写了父类的...</p>
@@ -380,7 +387,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#KVO"><span class="toc-number">1.</span> <span class="toc-text">KVO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KVC"><span class="toc-number">2.</span> <span class="toc-text">KVC</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">KVO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">KVC</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -388,37 +395,47 @@ crossorigin="anonymous"></script>
 
     </div>
     <div class='article-content'>
-    <h2 id="KVO"><a href="#KVO" class="headerlink" title="KVO"></a>KVO</h2><p><strong>Key-Value Observing</strong>，“键值监听”：用于监听某一对象属性值的改变。</p>
+    <h2>KVO</h2>
+<p><strong>Key-Value Observing</strong>，“键值监听”：用于监听某一对象属性值的改变。</p>
 <p>某一对象被监听后，系统利用 Runtime API 对该对象的原始类动态生成一个      “<code>NSKVONotifying_CPPerson</code>” 子类，并且让 instance 对象的 isa 指针指向这个子类。</p>
 <p>在新生成的这个子类中会重写父类的 <code>setAge:</code>、<code>class</code>、<code>dealloc</code>、<code>_isKVOA</code> 四个方法。</p>
 <p>当被监听对象的属性值发生改变后，会在 <code>setAge:</code> 方法中调用 NSFoundation 的 “<code>_NSSetIntValueAndNotify</code>” 函数。且在该函数内部重写了父类的 <code>willChangeValueForKey：</code>、<code>setAge：</code>、<code>didChangeValueForKey：</code>方法。</p>
 <p>并且在 <code>didChangeValueForKey：</code>方法中出发监听器 Observe 的监听方法      “<code>observeValueForKeyPath: ofObject: change: context:</code>”。</p>
 <p>本质：</p>
 <ul>
-<li><p>由于 KVO 的本质是重写了原始类的 <code>Setter 方法</code>，所以像直接修改成员变量是不会触发监听方法的。</p>
+<li>
+<p>由于 KVO 的本质是重写了原始类的 <code>Setter 方法</code>，所以像直接修改成员变量是不会触发监听方法的。</p>
 </li>
-<li><p>若想手动触发监听器的监听方法：手动执行       <code>willChangeValueForKey：</code>、<code>didChangeValueForKey：</code>方法。</p>
+<li>
+<p>若想手动触发监听器的监听方法：手动执行       <code>willChangeValueForKey：</code>、<code>didChangeValueForKey：</code>方法。</p>
 </li>
-<li><img src="/2018/05/31/浅析KVO、KVC/1.png" class="[机型]" title="[100][100]">
+<li>
+<img src="/2018/05/31/浅析KVO、KVC/1.png" class="[机型]" title="[100][100]">
 </li>
 </ul>
-<h2 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h2><p><strong>Key-Value Coding</strong>，“键值编码”：可以通过某一个 key 来访问对应的属性。</p>
+<h2>KVC</h2>
+<p><strong>Key-Value Coding</strong>，“键值编码”：可以通过某一个 key 来访问对应的属性。</p>
 <p>KVC 不管有没有调用 <code>setter 方法</code>，都会触发 KVO 的监听方法。因为它会手动触发监听。</p>
 <p>赋值操作：<strong><code>setValue: forKey:</code></strong></p>
 <ul>
-<li><p>首先会寻找 <code>setAge:</code>、<code>_setAge:</code> 两个方法的实现。</p>
+<li>
+<p>首先会寻找 <code>setAge:</code>、<code>_setAge:</code> 两个方法的实现。</p>
 </li>
-<li><p>若没有，会通过 <code>accessInstanceVariablesDirectly</code> 方法判断是否允许访问成员变量，若为 YES，则访问的顺序为 <code>_age</code>、<code>_isAge</code>、<code>age</code>、<code>isAge</code>。</p>
-<img src="/2018/05/31/浅析KVO、KVC/2.png" class="[机型]" title="[100][100]">
+<li>
+<p>若没有，会通过 <code>accessInstanceVariablesDirectly</code> 方法判断是否允许访问成员变量，若为 YES，则访问的顺序为 <code>_age</code>、<code>_isAge</code>、<code>age</code>、<code>isAge</code>。</p>
 </li>
 </ul>
+ <img src="/2018/05/31/浅析KVO、KVC/2.png" class="[机型]" title="[100][100]">
 <p>取值操作：<strong><code>valueForKey:</code></strong></p>
 <ul>
-<li><p>首先会寻找 <code>getAge:</code>、<code>age:</code>、<code>isAge:</code>、<code>_age:</code> 四个方法的实现。</p>
+<li>
+<p>首先会寻找 <code>getAge:</code>、<code>age:</code>、<code>isAge:</code>、<code>_age:</code> 四个方法的实现。</p>
 </li>
-<li><p>若没有，同上。</p>
+<li>
+<p>若没有，同上。</p>
 </li>
-<li><img src="/2018/05/31/浅析KVO、KVC/3.png" class="[机型]" title="[100][100]"></li>
+<li>
+<img src="/2018/05/31/浅析KVO、KVC/3.png" class="[机型]" title="[100][100]"></li>
 </ul>
 
     
@@ -428,7 +445,7 @@ crossorigin="anonymous"></script>
         <div class="article-comment" id='article-comment'>
             
 
-<h1>Comment</h1>
+<h1>评论</h1>
 
   
     <div id="comment-not-available">
@@ -448,8 +465,8 @@ crossorigin="anonymous"></script>
 <footer id='footer'>
     <div class='footer-copyright'>
         <div>
-            <p> Copyright by <a href="">曹培 </a> @ 2018</p>
-            <p>Designed by: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> and <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; Theme: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; Powered by <a href="http://hexo.io">Hexo.</a></p>
+            <p> 版权所有 <a href="">曹培 </a> @ 2018</p>
+            <p>设计: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> 和 <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; 主题: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; 由 <a href="http://hexo.io">Hexo.</a> 强力驱动</p>
         </div>
     </div>
     
@@ -458,10 +475,6 @@ crossorigin="anonymous"></script>
             
                 
                     <div class='footer-social-item'><a href='https://github.com/ITEnthusiast' target='_blank' ><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
-                
-            
-                
-                    <div class='footer-social-item'><a href='https://www.jianshu.com/u/c3199741ad2c' target='_blank' ><i class="fab fa-简书 fa-2x" aria-hidden="true"></i></a></div>
                 
             
         
@@ -485,7 +498,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#KVO"><span class="toc-number">1.</span> <span class="toc-text">KVO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KVC"><span class="toc-number">2.</span> <span class="toc-text">KVC</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">KVO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">KVC</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -497,7 +510,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -506,7 +519,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -605,7 +618,7 @@ crossorigin="anonymous"></script>
   loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
   loadjs.ready('post-version', function(){
     
-    new Postv2('hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e').update('hashit_41afbfa0b74c4b6ead7e012852af8246de897320bd72606721d41e51e137a151', function(){});
+    new Postv2('hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e').update('hashit_37de1048a9548c51ebdd0f907658a08ba1dbf35e112c5dadb1bdf048df189b1f', function(){});
   });
   
 </script>

@@ -115,7 +115,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mach-O文件结构"><span class="toc-number">1.</span> <span class="toc-text">Mach-O文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的-Mach-O-文件种类"><span class="toc-number">2.</span> <span class="toc-text">常见的 Mach-O 文件种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窥探-Mach-O-文件内信息的工具"><span class="toc-number">3.</span> <span class="toc-text">窥探 Mach-O 文件内信息的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">4.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Mach-O文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">常见的 Mach-O 文件种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">窥探 Mach-O 文件内信息的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -127,7 +127,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -136,7 +136,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -217,7 +217,10 @@ crossorigin="anonymous"></script>
 
 
 
-
+	
+	
+	
+	
 
 
 
@@ -283,7 +286,7 @@ crossorigin="anonymous"></script>
     <!-- Date and Author -->
     <div class='article-meta'>
     <ul>
-            <li><i class='fa fa-calendar'></i> 2018-05-17</li>
+            <li><i class='fa fa-calendar'></i> 2018年05月17日</li>
             
             <li><i class="fa fa-user"></i> 曹培</li>
             <li><i class="fas fa-copyright"></i>
@@ -292,7 +295,10 @@ crossorigin="anonymous"></script>
                 
             
             
-                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/>CC BY-NC-ND 4.0</a>
+                
+                    
+                
+                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh>CC BY-NC-ND 4.0</a>
             
             </li>
     </ul>
@@ -360,13 +366,18 @@ crossorigin="anonymous"></script>
 </div>
 <div class="card-text">
   <p id='text-post-summary'>Mach-O文件结构
+
+
 官方描述： https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/MachOTopics/0-Introduction/introduction.html
+
 
 Header：文件类型、目标架构类型信息
 
-Load commands： 描述文件在虚拟内存中的逻辑结构、布局     
 
-Raw segment data：  定义在Load commands中的segment的原始数据 
+Load commands： 描述文件在虚拟内存中的逻辑结构、布局
+
+
+Raw segment data：  定义在Load commands中的segment的原始数据
 
 
 常见的 Mach-O...</p>
@@ -387,7 +398,7 @@ Raw segment data：  定义在Load commands中的segment的原始数据
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mach-O文件结构"><span class="toc-number">1.</span> <span class="toc-text">Mach-O文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的-Mach-O-文件种类"><span class="toc-number">2.</span> <span class="toc-text">常见的 Mach-O 文件种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窥探-Mach-O-文件内信息的工具"><span class="toc-number">3.</span> <span class="toc-text">窥探 Mach-O 文件内信息的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">4.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Mach-O文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">常见的 Mach-O 文件种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">窥探 Mach-O 文件内信息的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -395,57 +406,84 @@ Raw segment data：  定义在Load commands中的segment的原始数据
 
     </div>
     <div class='article-content'>
-    <h2 id="Mach-O文件结构"><a href="#Mach-O文件结构" class="headerlink" title="Mach-O文件结构"></a>Mach-O文件结构</h2><ul>
-<li><p>官方描述： <a href="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/MachOTopics/0-Introduction/introduction.html" target="_blank" rel="noopener">https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/MachOTopics/0-Introduction/introduction.html</a></p>
+    <h2>Mach-O文件结构</h2>
+<ul>
+<li>
+<p>官方描述： <a href="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/MachOTopics/0-Introduction/introduction.html" target="_blank" rel="noopener">https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/MachOTopics/0-Introduction/introduction.html</a></p>
 </li>
-<li><p><strong>Header</strong>：文件类型、目标架构类型信息</p>
+<li>
+<p><strong>Header</strong>：文件类型、目标架构类型信息</p>
 </li>
-<li><p><strong>Load commands</strong>： 描述文件在虚拟内存中的逻辑结构、布局     </p>
+<li>
+<p><strong>Load commands</strong>： 描述文件在虚拟内存中的逻辑结构、布局</p>
 </li>
-<li><p><strong>Raw segment data</strong>：  定义在Load commands中的segment的原始数据 </p>
+<li>
+<p><strong>Raw segment data</strong>：  定义在Load commands中的segment的原始数据</p>
 </li>
 </ul>
-<h2 id="常见的-Mach-O-文件种类"><a href="#常见的-Mach-O-文件种类" class="headerlink" title="常见的 Mach-O 文件种类"></a>常见的 Mach-O 文件种类</h2><ul>
+<h2>常见的 Mach-O 文件种类</h2>
+<ul>
 <li><strong>MH_OBJECT</strong>：目标文件（.o）、静态库文件（.a）</li>
 <li><strong>MH_EXECUTE</strong>：可执行文件（.app）</li>
 <li><strong>MH_DYLIB</strong>：动态库文件（.dylib、.framework）</li>
 <li><strong>MH_DYLINKER</strong>：动态链接编辑器（/usr/lib/dyld）</li>
-<li><strong>MH_DSYM</strong>:   符号表（打包生成可执行文件时附带生成的文件）<ul>
-<li><img src="/2018/05/17/Mach-O文件细述/1.png" class="[机型]" title="[100][100]">
+<li><strong>MH_DSYM</strong>:   符号表（打包生成可执行文件时附带生成的文件）
+<ul>
+<li>
+<img src="/2018/05/17/Mach-O文件细述/1.png" class="[机型]" title="[100][100]">
 </li>
 </ul>
 </li>
 </ul>
 <p>dyld 程序的作用：加载 <strong>MH_DYLIB</strong>、<strong>MH_BUNDLE</strong>、<strong>MH_EXECUTE</strong>（这一点类似 window 中的 commend 程序）</p>
 <ul>
-<li><img src="/2018/05/17/Mach-O文件细述/2.png" class="[机型]" title="[100][100]">
+<li>
+<img src="/2018/05/17/Mach-O文件细述/2.png" class="[机型]" title="[100][100]">
 </li>
 </ul>
-<h2 id="窥探-Mach-O-文件内信息的工具"><a href="#窥探-Mach-O-文件内信息的工具" class="headerlink" title="窥探 Mach-O 文件内信息的工具"></a>窥探 Mach-O 文件内信息的工具</h2><ul>
-<li>otool命令：查看Mach-O文件特定部分和段的内容<ul>
-<li><img src="/2018/05/17/Mach-O文件细述/3.png" class="[机型]" title="[100][100]"></li>
-</ul>
-</li>
-<li>file命令：查看Mach-O文件的具体类型<ul>
-<li><img src="/2018/05/17/Mach-O文件细述/4.png" class="[机型]" title="[100][100]"></li>
-</ul>
-</li>
-<li><p>lipo命令</p>
+<h2>窥探 Mach-O 文件内信息的工具</h2>
 <ul>
-<li><img src="/2018/05/17/Mach-O文件细述/5.png" class="[机型]" title="[100][100]"></li>
-<li><img src="/2018/05/17/Mach-O文件细述/6.png" class="[机型]" title="[100][100]"></li>
-<li><img src="/2018/05/17/Mach-O文件细述/7.png" class="[机型]" title="[100][100]">
-</li>
-</ul>
-</li>
-<li><p>MachOView：<a href="https://github.com/gdbinit/MachOView" target="_blank" rel="noopener">https://github.com/gdbinit/MachOView</a></p>
+<li>
+<p>otool命令：查看Mach-O文件特定部分和段的内容</p>
 <ul>
-<li><img src="/2018/05/17/Mach-O文件细述/8.png" class="[机型]" title="[100][100]">
+<li>
+<img src="/2018/05/17/Mach-O文件细述/3.png" class="[机型]" title="[100][100]">
+</li>
+</ul>
+</li>
+<li>
+<p>file命令：查看Mach-O文件的具体类型</p>
+<ul>
+<li>
+<img src="/2018/05/17/Mach-O文件细述/4.png" class="[机型]" title="[100][100]">
+</li>
+</ul>
+</li>
+<li>
+<p>lipo命令</p>
+<ul>
+<li>
+<img src="/2018/05/17/Mach-O文件细述/5.png" class="[机型]" title="[100][100]">
+</li>
+<li>
+<img src="/2018/05/17/Mach-O文件细述/6.png" class="[机型]" title="[100][100]">
+</li>
+<li>
+<img src="/2018/05/17/Mach-O文件细述/7.png" class="[机型]" title="[100][100]">
+</li>
+</ul>
+</li>
+<li>
+<p>MachOView：<a href="https://github.com/gdbinit/MachOView" target="_blank" rel="noopener">https://github.com/gdbinit/MachOView</a></p>
+<ul>
+<li>
+<img src="/2018/05/17/Mach-O文件细述/8.png" class="[机型]" title="[100][100]">
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><blockquote><p>第2章 越狱iOS平台简介</p>
+<h2>参考文献：</h2>
+<blockquote><p>第2章 越狱iOS平台简介</p>
 <footer><strong>iOS应用逆向工程 第二版</strong><cite>沙梓社 吴航（著）</cite></footer></blockquote>
     
     </div>
@@ -454,7 +492,7 @@ Raw segment data：  定义在Load commands中的segment的原始数据
         <div class="article-comment" id='article-comment'>
             
 
-<h1>Comment</h1>
+<h1>评论</h1>
 
   
     <div id="comment-not-available">
@@ -474,8 +512,8 @@ Raw segment data：  定义在Load commands中的segment的原始数据
 <footer id='footer'>
     <div class='footer-copyright'>
         <div>
-            <p> Copyright by <a href="">曹培 </a> @ 2018</p>
-            <p>Designed by: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> and <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; Theme: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; Powered by <a href="http://hexo.io">Hexo.</a></p>
+            <p> 版权所有 <a href="">曹培 </a> @ 2018</p>
+            <p>设计: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> 和 <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; 主题: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; 由 <a href="http://hexo.io">Hexo.</a> 强力驱动</p>
         </div>
     </div>
     
@@ -484,10 +522,6 @@ Raw segment data：  定义在Load commands中的segment的原始数据
             
                 
                     <div class='footer-social-item'><a href='https://github.com/ITEnthusiast' target='_blank' ><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
-                
-            
-                
-                    <div class='footer-social-item'><a href='https://www.jianshu.com/u/c3199741ad2c' target='_blank' ><i class="fab fa-简书 fa-2x" aria-hidden="true"></i></a></div>
                 
             
         
@@ -511,7 +545,7 @@ Raw segment data：  定义在Load commands中的segment的原始数据
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mach-O文件结构"><span class="toc-number">1.</span> <span class="toc-text">Mach-O文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的-Mach-O-文件种类"><span class="toc-number">2.</span> <span class="toc-text">常见的 Mach-O 文件种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窥探-Mach-O-文件内信息的工具"><span class="toc-number">3.</span> <span class="toc-text">窥探 Mach-O 文件内信息的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">4.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Mach-O文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">常见的 Mach-O 文件种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">窥探 Mach-O 文件内信息的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -523,7 +557,7 @@ Raw segment data：  定义在Load commands中的segment的原始数据
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -532,7 +566,7 @@ Raw segment data：  定义在Load commands中的segment的原始数据
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -631,7 +665,7 @@ Raw segment data：  定义在Load commands中的segment的原始数据
   loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
   loadjs.ready('post-version', function(){
     
-    new Postv2('hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f').update('hashit_bacbc0fad85ea1c5e7ab808f20d19a91799d2b0ff67fcbb8cd1cb44b07b47031', function(){});
+    new Postv2('hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f').update('hashit_4bc781cdcfaab155500f9e51d04a909ebf48573d4bbb84afa59a7e50463a2dae', function(){});
   });
   
 </script>

@@ -113,7 +113,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -122,7 +122,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -281,8 +281,8 @@ crossorigin="anonymous"></script>
 <footer id='footer'>
     <div class='footer-copyright'>
         <div>
-            <p> Copyright by <a href="">曹培 </a> @ 2018</p>
-            <p>Designed by: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> and <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; Theme: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; Powered by <a href="http://hexo.io">Hexo.</a></p>
+            <p> 版权所有 <a href="">曹培 </a> @ 2018</p>
+            <p>设计: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> 和 <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; 主题: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; 由 <a href="http://hexo.io">Hexo.</a> 强力驱动</p>
         </div>
     </div>
     
@@ -291,10 +291,6 @@ crossorigin="anonymous"></script>
             
                 
                     <div class='footer-social-item'><a href='https://github.com/ITEnthusiast' target='_blank' ><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
-                
-            
-                
-                    <div class='footer-social-item'><a href='https://www.jianshu.com/u/c3199741ad2c' target='_blank' ><i class="fab fa-简书 fa-2x" aria-hidden="true"></i></a></div>
                 
             
         
@@ -316,7 +312,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -325,7 +321,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -430,7 +426,7 @@ crossorigin="anonymous"></script>
           
           // show/hide post unread badage
           var postLinks = document.querySelectorAll('#hashit_d4bbce1990c174030b89a726a8b8cefdf67d50e3c0bd348cea787372255f30c7 .Card-title a, #hashit_d4bbce1990c174030b89a726a8b8cefdf67d50e3c0bd348cea787372255f30c7 .Card-excerpt a, #hashit_d4bbce1990c174030b89a726a8b8cefdf67d50e3c0bd348cea787372255f30c7 .Card-figure a');
-          new Postv2('hashit_d4bbce1990c174030b89a726a8b8cefdf67d50e3c0bd348cea787372255f30c7').showUnreadNotification('hashit_2b4f0539ef6526a810b935e77087bdfdd7c71193ca53253ca652f2125ea69c54', function(){
+          new Postv2('hashit_d4bbce1990c174030b89a726a8b8cefdf67d50e3c0bd348cea787372255f30c7').showUnreadNotification('hashit_c3d3f60921aa7f736de1fb0126d7862b897218c67974fa4e9a77a049afa3935a', function(){
             console.log('show badge for 2018/04/19/探索函数调用得本质之旅/ : hashit_d4bbce1990c174030b89a726a8b8cefdf67d50e3c0bd348cea787372255f30c7');
             var postBadge = document.querySelector('#hashit_d4bbce1990c174030b89a726a8b8cefdf67d50e3c0bd348cea787372255f30c7 mark.Card-badge');
             $(postBadge).fadeIn();
@@ -442,7 +438,7 @@ crossorigin="anonymous"></script>
           // update cookie upon click the post and hide badge immediately
           for(var i = 0;i < postLinks.length; i++){
             postLinks[i].onclick = function(){
-              new Postv2('hashit_d4bbce1990c174030b89a726a8b8cefdf67d50e3c0bd348cea787372255f30c7').update('hashit_2b4f0539ef6526a810b935e77087bdfdd7c71193ca53253ca652f2125ea69c54', function(){
+              new Postv2('hashit_d4bbce1990c174030b89a726a8b8cefdf67d50e3c0bd348cea787372255f30c7').update('hashit_c3d3f60921aa7f736de1fb0126d7862b897218c67974fa4e9a77a049afa3935a', function(){
                 console.log('called');
                 var postBadge = document.querySelector('#hashit_d4bbce1990c174030b89a726a8b8cefdf67d50e3c0bd348cea787372255f30c7 mark.Card-badge');
                 $(postBadge).fadeOut();

@@ -127,7 +127,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -136,7 +136,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -217,7 +217,10 @@ crossorigin="anonymous"></script>
 
 
 
-
+	
+	
+	
+	
 
 
 
@@ -283,7 +286,7 @@ crossorigin="anonymous"></script>
     <!-- Date and Author -->
     <div class='article-meta'>
     <ul>
-            <li><i class='fa fa-calendar'></i> 2018-05-03</li>
+            <li><i class='fa fa-calendar'></i> 2018年05月03日</li>
             
             <li><i class="fa fa-user"></i> 曹培</li>
             <li><i class="fas fa-copyright"></i>
@@ -292,7 +295,10 @@ crossorigin="anonymous"></script>
                 
             
             
-                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/>CC BY-NC-ND 4.0</a>
+                
+                    
+                
+                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh>CC BY-NC-ND 4.0</a>
             
             </li>
     </ul>
@@ -360,6 +366,7 @@ crossorigin="anonymous"></script>
 </div>
 <div class="card-text">
   <p id='text-post-summary'>引言
+
 我们了解类的本质构成及“类继承体系”， superclass 指针确立了继承关系，而 isa 指针描述了当前实例对象所属的类，并却能够看出对象位于“类继承体系”的哪一部分。如果某对象传递消息：1id returnValue = [object fun: parameter];编译器会把这条消息转换为如下函数：1id returnValue = objc_msgSend(object, @selector(fun:), parameter); objc_msgSend...</p>
 </div>
         </div> -->
@@ -386,8 +393,9 @@ crossorigin="anonymous"></script>
 
     </div>
     <div class='article-content'>
-    <p></p><h2>引言</h2><p></p>
-<p><h7><br>我们了解类的本质构成及“类继承体系”， superclass 指针确立了继承关系，而 isa 指针描述了当前实例对象所属的类，并却能够看出对象位于“类继承体系”的哪一部分。如果某对象传递消息：<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> returnValue = [object fun: parameter];</span><br></pre></td></tr></table></figure>编译器会把这条消息转换为如下函数：<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> returnValue = objc_msgSend(object, <span class="keyword">@selector</span>(fun:), parameter);</span><br></pre></td></tr></table></figure> objc_msgSend 函数会依据接受者与方法的类型来调用适当的方法。为了完成此操作，该函数需要在接受者所属的类中搜寻其“方法列表”（methods）（该函数会将匹配结果换存在“缓存表”（cache）里面，每个类都有这样一块缓存，便于下次还向该类发送此方法），如果能找到与方法名称相符的方法，就跳转至相对应的实现代码。若是找不到就沿着“类继承体系”的“方法调用轨迹”继续向上查找，找到了合适的方法之后再跳转至实现代码，在此之前都称为消息传递阶段。如果最终还是没找到相符的方法，那就执行“消息转发”（message forwarding）操作。
+    <p></p><h2>引言</h2>
+<h7>
+我们了解类的本质构成及“类继承体系”， superclass 指针确立了继承关系，而 isa 指针描述了当前实例对象所属的类，并却能够看出对象位于“类继承体系”的哪一部分。如果某对象传递消息：<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> returnValue = [object fun: parameter];</span><br></pre></td></tr></table></figure>编译器会把这条消息转换为如下函数：<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> returnValue = objc_msgSend(object, <span class="keyword">@selector</span>(fun:), parameter);</span><br></pre></td></tr></table></figure> objc_msgSend 函数会依据接受者与方法的类型来调用适当的方法。为了完成此操作，该函数需要在接受者所属的类中搜寻其“方法列表”（methods）（该函数会将匹配结果换存在“缓存表”（cache）里面，每个类都有这样一块缓存，便于下次还向该类发送此方法），如果能找到与方法名称相符的方法，就跳转至相对应的实现代码。若是找不到就沿着“类继承体系”的“方法调用轨迹”继续向上查找，找到了合适的方法之后再跳转至实现代码，在此之前都称为消息传递阶段。如果最终还是没找到相符的方法，那就执行“消息转发”（message forwarding）操作。
 <h2>消息转发（message forwarding）</h2>
 在编译期间向某类发送了其无法解读的消息并不会报错，因为在运行期可以继续向类中添加方法，所以编译器在编译时还无法确认类中会不会有该方法的实现。当最终都没能解读此消息后，就会启动 <b>消息转发（message forwarding）</b>机制。如果经过消息转发阶段仍未找到对象执行解读此消息，结果则会调用“doesNotRecognizeSelector”方法抛出异常以程序崩溃而告终。不过开发者在编写自己的类时，可在消息转发阶段设置“挂钩”，用以执行预定的逻辑，而不至于应用程序崩溃。
 <img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/1.png" class="[还原OC对象的方法调用轨迹（下）]">
@@ -396,12 +404,21 @@ crossorigin="anonymous"></script>
 对象在收到无法解读的消息后，首先会调用其所属类的下列方法：<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="built_in">BOOL</span>)resolveInstanceMethod: (SEL)selector <span class="comment">//方法类型为对象方法</span></span><br></pre></td></tr></table></figure>或者<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="built_in">BOOL</span>)resolveClassMethod: (SEL)selector <span class="comment">//方法类型为类方法</span></span><br></pre></td></tr></table></figure>表示这个类是否能够新增一个实例方法来处理这个消息。使用这个方法的前提是，该类已经把相关方法的实现代码准备好了，就等着运行的时候动态插在类里面就可以了。关于这的方案的应用<blockquote><footer><strong>Effective Objective-C 2.0</strong><cite>Matt Galloway（著） 爱飞翔（译）</cite></footer></blockquote>这本书举了“@dynamic”属性的实现为例子，实际开发中也可能会被用来“注入”调试信息，或者<a href="https://github.com/ITEnthusiast/TrendsAnalytics" target="_blank" rel="noopener">收集用户信息</a>等。
 <img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/2.png" class="[还原OC对象的方法调用轨迹（下）]"><br>
 <h3><b>2、备援接受者（replacement receiver）</b></h3><br>
-该阶段当前接受者还有第二次机会处理这个未知的消息，会调用 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="keyword">id</span>)forwardingTargetForSelector: (SEL)selector </span><br></pre></td></tr></table></figure>来获取备援接受者对象。一个对象的内部，可能还有一系列其他对象，该对象可经由此方法将能够处理该消息的相关内部对象当作结果返回。<br><img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/3.png" class="[还原OC对象的方法调用轨迹（下）]"><br><img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/4.png" class="[还原OC对象的方法调用轨迹（下）]"></h7></p>
-<p></p><h3><b>3、完整的消息转发机制（full forwarding mechanism）</b></h3><br>首先创建 NSInvocation 对象，把与尚未处理的那条消息有关的全部细节都封装在里面，这个对象包含方法、目标接受者及参数。<br>在触发 NSInvocation 对象时，“消息派发系统”（message-dispatch system）会调用<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)forwardingInvocation: (<span class="built_in">NSInvocation</span> *)invocation </span><br></pre></td></tr></table></figure>把消息指派给目标对象。该方法的实现内容大致分两种：第一种，简单的修改目标，使该消息在新目标上得以调用即可。由于此方法功能跟“备援接受者”阶段的效果一样，所以很少有人采用；第二种就是在消息被触发前，以某种方式改变消息本体的参数或更换消息等。这个阶段也可以调用父类的同名上述方法，这样继承体系中的每个类都有机会处理此调用请求，直至 NSObject 基类，继而还是会调用“doesNotRecognizeSelector”方法抛出异常，俗称程序崩溃。<br><img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/5.png" class="[还原OC对象的方法调用轨迹（下）]"><p></p>
-<p></p><h2>总结</h2><br><b>消息传递阶段</b>：作为面向对象高级编程语言几乎都有与之相对应的函数调用轨迹。<br><b>消息转发阶段</b>：接受者在每一步都有机会处理这个消息，只不过越往后，处理消息的代价就越大。“动态绑定”的机制为Object-C语言赋予了动态语言所拥有的特性，也因为此灵活性在代码执行速度上就不及“静态绑定”的函数调用操作那样迅速了，即使在类的内部缓存着曾经调用过的方法。消息转发全流程如下图：<br><img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/6.jpg" class="[还原OC对象的方法调用轨迹（下）]"><br><p></p>
-<p></p><h2>参考文献：</h2><br><blockquote><p>第二章：对象、消息、运行期</p>
-<footer><strong>Effective Objective-C 2.0</strong><cite>Matt Galloway（著） 爱飞翔（译）</cite></footer></blockquote><p></p>
-
+该阶段当前接受者还有第二次机会处理这个未知的消息，会调用 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="keyword">id</span>)forwardingTargetForSelector: (SEL)selector </span><br></pre></td></tr></table></figure>来获取备援接受者对象。一个对象的内部，可能还有一系列其他对象，该对象可经由此方法将能够处理该消息的相关内部对象当作结果返回。<p></p>
+<img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/3.png" class="[还原OC对象的方法调用轨迹（下）]">
+<img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/4.png" class="[还原OC对象的方法调用轨迹（下）]">
+<p></p><h3><b>3、完整的消息转发机制（full forwarding mechanism）</b></h3>
+首先创建 NSInvocation 对象，把与尚未处理的那条消息有关的全部细节都封装在里面，这个对象包含方法、目标接受者及参数。
+在触发 NSInvocation 对象时，“消息派发系统”（message-dispatch system）会调用<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)forwardingInvocation: (<span class="built_in">NSInvocation</span> *)invocation </span><br></pre></td></tr></table></figure>把消息指派给目标对象。该方法的实现内容大致分两种：第一种，简单的修改目标，使该消息在新目标上得以调用即可。由于此方法功能跟“备援接受者”阶段的效果一样，所以很少有人采用；第二种就是在消息被触发前，以某种方式改变消息本体的参数或更换消息等。这个阶段也可以调用父类的同名上述方法，这样继承体系中的每个类都有机会处理此调用请求，直至 NSObject 基类，继而还是会调用“doesNotRecognizeSelector”方法抛出异常，俗称程序崩溃。<p></p>
+<img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/5.png" class="[还原OC对象的方法调用轨迹（下）]">
+<p></p><h2>总结</h2>
+<b>消息传递阶段</b>：作为面向对象高级编程语言几乎都有与之相对应的函数调用轨迹。
+<b>消息转发阶段</b>：接受者在每一步都有机会处理这个消息，只不过越往后，处理消息的代价就越大。“动态绑定”的机制为Object-C语言赋予了动态语言所拥有的特性，也因为此灵活性在代码执行速度上就不及“静态绑定”的函数调用操作那样迅速了，即使在类的内部缓存着曾经调用过的方法。消息转发全流程如下图：<p></p>
+<img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/6.jpg" class="[还原OC对象的方法调用轨迹（下）]">
+</h7>
+<h2>参考文献：</h2>
+<blockquote><p>第二章：对象、消息、运行期</p>
+<footer><strong>Effective Objective-C 2.0</strong><cite>Matt Galloway（著） 爱飞翔（译）</cite></footer></blockquote>
     
     </div>
     
@@ -409,7 +426,7 @@ crossorigin="anonymous"></script>
         <div class="article-comment" id='article-comment'>
             
 
-<h1>Comment</h1>
+<h1>评论</h1>
 
   
     <div id="comment-not-available">
@@ -429,8 +446,8 @@ crossorigin="anonymous"></script>
 <footer id='footer'>
     <div class='footer-copyright'>
         <div>
-            <p> Copyright by <a href="">曹培 </a> @ 2018</p>
-            <p>Designed by: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> and <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; Theme: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; Powered by <a href="http://hexo.io">Hexo.</a></p>
+            <p> 版权所有 <a href="">曹培 </a> @ 2018</p>
+            <p>设计: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> 和 <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; 主题: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; 由 <a href="http://hexo.io">Hexo.</a> 强力驱动</p>
         </div>
     </div>
     
@@ -439,10 +456,6 @@ crossorigin="anonymous"></script>
             
                 
                     <div class='footer-social-item'><a href='https://github.com/ITEnthusiast' target='_blank' ><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
-                
-            
-                
-                    <div class='footer-social-item'><a href='https://www.jianshu.com/u/c3199741ad2c' target='_blank' ><i class="fab fa-简书 fa-2x" aria-hidden="true"></i></a></div>
                 
             
         
@@ -478,7 +491,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -487,7 +500,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -586,7 +599,7 @@ crossorigin="anonymous"></script>
   loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
   loadjs.ready('post-version', function(){
     
-    new Postv2('hashit_95515a5952efd76bb495a4238801fa98d5a02aed8f30c8d259791151aa8cd7fd').update('hashit_34578ce6864adf7c804522e5b1fa3837b0997e0ef585a8147f1612987035ef33', function(){});
+    new Postv2('hashit_95515a5952efd76bb495a4238801fa98d5a02aed8f30c8d259791151aa8cd7fd').update('hashit_b1c1bd1cccd356d3cc68c9d15436df46fcd38e6296a1a8f13093fabe33088d69', function(){});
   });
   
 </script>

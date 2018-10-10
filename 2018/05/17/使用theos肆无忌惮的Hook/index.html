@@ -115,7 +115,7 @@ crossorigin="anonymous"></script>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#theos"><span class="toc-number">1.</span> <span class="toc-text">theos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">2.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">theos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -127,7 +127,7 @@ crossorigin="anonymous"></script>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -136,7 +136,7 @@ crossorigin="anonymous"></script>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -217,7 +217,10 @@ crossorigin="anonymous"></script>
 
 
 
-
+	
+	
+	
+	
 
 
 
@@ -283,7 +286,7 @@ crossorigin="anonymous"></script>
     <!-- Date and Author -->
     <div class='article-meta'>
     <ul>
-            <li><i class='fa fa-calendar'></i> 2018-05-17</li>
+            <li><i class='fa fa-calendar'></i> 2018年05月17日</li>
             
             <li><i class="fa fa-user"></i> 曹培</li>
             <li><i class="fas fa-copyright"></i>
@@ -292,7 +295,10 @@ crossorigin="anonymous"></script>
                 
             
             
-                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/>CC BY-NC-ND 4.0</a>
+                
+                    
+                
+                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh>CC BY-NC-ND 4.0</a>
             
             </li>
     </ul>
@@ -368,14 +374,22 @@ crossorigin="anonymous"></script>
 </div>
 <div class="card-text">
   <p id='text-post-summary'>theos
+
+
 下载地址：git clone --recursive &lt;https://github.com/theos/theos.git&gt; ～/theos
+
+
 配置环境变量：
+
+
 
 
 执行 source .bash_profile 命令，立即生效
 
 
+
 创建tweek项目
+
 执行 nic.pl 命令，选择 11创建 tweek 项目
 填写项目信息
 
@@ -384,9 +398,16 @@ crossorigin="anonymous"></script>
 
 
 
+
+
+
+
+
+
 打开 Makefile文件，添加通过 USB 连接 iPhone 所需的端口号等信息
+
 export THEOS_DEVICE_IP = localhost(IP地址)
-export THEOS_DEVICE_PORT =...</p>
+export...</p>
 </div>
         </div> -->
     </div>
@@ -404,7 +425,7 @@ export THEOS_DEVICE_PORT =...</p>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#theos"><span class="toc-number">1.</span> <span class="toc-text">theos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">2.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">theos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -412,37 +433,57 @@ export THEOS_DEVICE_PORT =...</p>
 
     </div>
     <div class='article-content'>
-    <h2 id="theos"><a href="#theos" class="headerlink" title="theos"></a>theos</h2><ul>
-<li>下载地址：<code>git clone --recursive &lt;https://github.com/theos/theos.git&gt; ～/theos</code></li>
-<li><p>配置环境变量：</p>
+    <h2>theos</h2>
 <ul>
-<li><img src="/2018/05/17/使用theos肆无忌惮的Hook/1.png" class="[机型]" title="[100][100]"></li>
+<li>
+<p>下载地址：<code>git clone --recursive &lt;https://github.com/theos/theos.git&gt; ～/theos</code></p>
+</li>
+<li>
+<p>配置环境变量：</p>
+<ul>
+<li>
+<img src="/2018/05/17/使用theos肆无忌惮的Hook/1.png" class="[机型]" title="[100][100]">
+</li>
 <li>执行 <code>source .bash_profile</code> 命令，立即生效</li>
 </ul>
 </li>
-<li>创建tweek项目<ul>
+<li>
+<p>创建tweek项目</p>
+<ul>
 <li>执行 <code>nic.pl</code> 命令，选择 <code>11</code>创建 tweek 项目</li>
-<li>填写项目信息<ul>
-<li><img src="/2018/05/17/使用theos肆无忌惮的Hook/2.png" class="[机型]" title="[100][100]"></li>
-<li><img src="/2018/05/17/使用theos肆无忌惮的Hook/3.png" class="[机型]" title="[100][100]"></li>
-</ul>
+<li>填写项目信息
+<ul>
+<li>
+<img src="/2018/05/17/使用theos肆无忌惮的Hook/2.png" class="[机型]" title="[100][100]">
+</li>
+<li>
+<img src="/2018/05/17/使用theos肆无忌惮的Hook/3.png" class="[机型]" title="[100][100]">
 </li>
 </ul>
 </li>
-<li>打开 Makefile文件，添加通过 USB 连接 iPhone 所需的端口号等信息<ul>
+</ul>
+</li>
+<li>
+<p>打开 Makefile文件，添加通过 USB 连接 iPhone 所需的端口号等信息</p>
+<ul>
 <li><code>export THEOS_DEVICE_IP = localhost(IP地址)</code></li>
 <li><code>export THEOS_DEVICE_PORT = 10010</code>【可配置到<code>～/.bash_profile</code>】</li>
 </ul>
 </li>
-<li><p>在 <code>Tweak.xm</code> 文件内编写 hook 程序。</p>
+<li>
+<p>在 <code>Tweak.xm</code> 文件内编写 hook 程序。</p>
 <ul>
-<li>Logos语法：<code>@hook   @end</code>、<code>@new</code>、<code>@orig</code>、<code>@ctor{程序启动时} @dtor{程序结束时}</code>;</li>
+<li>Logos语法：<code>@hook @end</code>、<code>@new</code>、<code>@orig</code>、<code>@ctor{程序启动时} @dtor{程序结束时}</code>;</li>
 <li>程序秒退：<code>abort()</code>;</li>
 <li>图片资源放置路径：项目文件 <code>/layout/Library/Caches/</code> 。</li>
-<li><ul>
-<li>使用时：”<code>/Library/Caches/imageName</code>“。<ul>
-<li>宏定义图片资源路径：使用起来更方便。<ul>
-<li><code>\#define CPFile(path) @&quot;/Library/Caches/&quot; #path</code><ul>
+<li>
+<ul>
+<li>使用时：&quot;<code>/Library/Caches/imageName</code>&quot;。
+<ul>
+<li>宏定义图片资源路径：使用起来更方便。
+<ul>
+<li><code>\#define CPFile(path) @&quot;/Library/Caches/&quot; #path</code>
+<ul>
 <li>使用时：<code>imageName</code>。</li>
 </ul>
 </li>
@@ -452,9 +493,11 @@ export THEOS_DEVICE_PORT =...</p>
 </li>
 </ul>
 </li>
-<li>多文件开发<ul>
-<li>修改<code>wechatweak_FILES = src/Tweak.xm  src/model/*.m</code><ul>
-<li>Import @”model/Person.h”</li>
+<li>多文件开发
+<ul>
+<li>修改<code>wechatweak_FILES = src/Tweak.xm src/model/*.m</code>
+<ul>
+<li>Import @“model/Person.h”</li>
 </ul>
 </li>
 </ul>
@@ -463,15 +506,19 @@ export THEOS_DEVICE_PORT =...</p>
 <li>使用<code>@new</code>定义一个新方法时，需要提前在<code>@interface</code>中声明一下</li>
 </ul>
 </li>
-<li><p>编译</p>
+<li>
+<p>编译</p>
 <ul>
-<li>来到项目文件执行 <code>make</code> 指令<ul>
-<li><img src="/2018/05/17/使用theos肆无忌惮的Hook/4.png" class="[机型]" title="[100][100]">
+<li>来到项目文件执行 <code>make</code> 指令
+<ul>
+<li>
+<img src="/2018/05/17/使用theos肆无忌惮的Hook/4.png" class="[机型]" title="[100][100]">
 <ul>
 <li>解决方案：<code>sudo xcode-select --switch /Applications/Xcode.app</code></li>
 </ul>
 </li>
-<li><img src="/2018/05/17/使用theos肆无忌惮的Hook/5.png" class="[机型]" title="[100][100]">
+<li>
+<img src="/2018/05/17/使用theos肆无忌惮的Hook/5.png" class="[机型]" title="[100][100]">
 <ul>
 <li>解决方案：<code>brew install ldid</code></li>
 </ul>
@@ -480,15 +527,22 @@ export THEOS_DEVICE_PORT =...</p>
 </li>
 </ul>
 </li>
-<li>打包： <code>make package</code></li>
-<li>安装插件： <code>make install</code></li>
-<li>卸载插件<ul>
+<li>
+<p>打包： <code>make package</code></p>
+</li>
+<li>
+<p>安装插件： <code>make install</code></p>
+</li>
+<li>
+<p>卸载插件</p>
+<ul>
 <li><code>Device/Libraey/MobilSubstrate/DynamicLibraries</code>  删除插件文件</li>
 <li>通过 Cydia 工具卸载插件</li>
 </ul>
 </li>
 </ul>
-<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><blockquote><p>第3章 MacOS工具集</p>
+<h2>参考文献：</h2>
+<blockquote><p>第3章 MacOS工具集</p>
 <footer><strong>iOS应用逆向工程 第二版</strong><cite>沙梓社 吴航（著）</cite></footer></blockquote>
     
     </div>
@@ -497,7 +551,7 @@ export THEOS_DEVICE_PORT =...</p>
         <div class="article-comment" id='article-comment'>
             
 
-<h1>Comment</h1>
+<h1>评论</h1>
 
   
     <div id="comment-not-available">
@@ -517,8 +571,8 @@ export THEOS_DEVICE_PORT =...</p>
 <footer id='footer'>
     <div class='footer-copyright'>
         <div>
-            <p> Copyright by <a href="">曹培 </a> @ 2018</p>
-            <p>Designed by: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> and <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; Theme: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; Powered by <a href="http://hexo.io">Hexo.</a></p>
+            <p> 版权所有 <a href="">曹培 </a> @ 2018</p>
+            <p>设计: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> 和 <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; 主题: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; 由 <a href="http://hexo.io">Hexo.</a> 强力驱动</p>
         </div>
     </div>
     
@@ -527,10 +581,6 @@ export THEOS_DEVICE_PORT =...</p>
             
                 
                     <div class='footer-social-item'><a href='https://github.com/ITEnthusiast' target='_blank' ><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
-                
-            
-                
-                    <div class='footer-social-item'><a href='https://www.jianshu.com/u/c3199741ad2c' target='_blank' ><i class="fab fa-简书 fa-2x" aria-hidden="true"></i></a></div>
                 
             
         
@@ -554,7 +604,7 @@ export THEOS_DEVICE_PORT =...</p>
 
 <div class='toc-container'>
 <i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#theos"><span class="toc-number">1.</span> <span class="toc-text">theos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">2.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">theos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
 <div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
     <img src="/images/icons/blue-line/toc.svg" alt="">
@@ -566,7 +616,7 @@ export THEOS_DEVICE_PORT =...</p>
 		
 				<div class='nav-icon'>
 				
-			<a href="/archives/" title='Archives'>
+			<a href="/archives/" title='归档'>
 			<img src="/images/icons/blue-line/archive.svg" alt="">
 			</a>
 		</div>
@@ -575,7 +625,7 @@ export THEOS_DEVICE_PORT =...</p>
 		
 		<div class='nav-icon'>
 		
-			<a href="/search/" title='Search'>
+			<a href="/search/" title='搜索'>
 			<img src="/images/icons/blue-line/search.svg" alt="">
 			</a>
 		</div>
@@ -674,7 +724,7 @@ export THEOS_DEVICE_PORT =...</p>
   loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
   loadjs.ready('post-version', function(){
     
-    new Postv2('hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249').update('hashit_bbd93caaec634ed42dd4585b9815b9b4da13d5997c76bc421919575e04e0e0ce', function(){});
+    new Postv2('hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249').update('hashit_68242ee65d2717c3919577da779eed320772038fef9f105c7966cba1619a822e', function(){});
   });
   
 </script>
