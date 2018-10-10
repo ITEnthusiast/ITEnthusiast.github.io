@@ -1,0 +1,566 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>还原OC对象的方法调用轨迹（下） | 曹培の技术栈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="曹培">
+    
+
+    
+    <meta name="description" content="引言 我们了解类的本质构成及“类继承体系”， superclass 指针确立了继承关系，而 isa 指针描述了当前实例对象所属的类，并却能够看出对象位于“类继承体系”的哪一部分。如果某对象传递消息：1id returnValue = [object fun: parameter];编译器会把这条消息转换为如下函数：1id returnValue = objc_msgSend(object, @se">
+<meta name="keywords" content="objc消息转发机制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="还原OC对象的方法调用轨迹（下）">
+<meta property="og:url" content="https://itenthusiast.github.io/2018/05/03/还原OC对象的方法调用轨迹（下）/index.html">
+<meta property="og:site_name" content="曹培の技术栈">
+<meta property="og:description" content="引言 我们了解类的本质构成及“类继承体系”， superclass 指针确立了继承关系，而 isa 指针描述了当前实例对象所属的类，并却能够看出对象位于“类继承体系”的哪一部分。如果某对象传递消息：1id returnValue = [object fun: parameter];编译器会把这条消息转换为如下函数：1id returnValue = objc_msgSend(object, @se">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://itenthusiast.github.io/2018/05/03/还原OC对象的方法调用轨迹（下）/1.png">
+<meta property="og:image" content="https://itenthusiast.github.io/2018/05/03/还原OC对象的方法调用轨迹（下）/2.png">
+<meta property="og:image" content="https://itenthusiast.github.io/2018/05/03/还原OC对象的方法调用轨迹（下）/3.png">
+<meta property="og:image" content="https://itenthusiast.github.io/2018/05/03/还原OC对象的方法调用轨迹（下）/4.png">
+<meta property="og:image" content="https://itenthusiast.github.io/2018/05/03/还原OC对象的方法调用轨迹（下）/5.png">
+<meta property="og:image" content="https://itenthusiast.github.io/2018/05/03/还原OC对象的方法调用轨迹（下）/6.jpg">
+<meta property="og:updated_time" content="2018-05-04T01:39:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="还原OC对象的方法调用轨迹（下）">
+<meta name="twitter:description" content="引言 我们了解类的本质构成及“类继承体系”， superclass 指针确立了继承关系，而 isa 指针描述了当前实例对象所属的类，并却能够看出对象位于“类继承体系”的哪一部分。如果某对象传递消息：1id returnValue = [object fun: parameter];编译器会把这条消息转换为如下函数：1id returnValue = objc_msgSend(object, @se">
+<meta name="twitter:image" content="https://itenthusiast.github.io/2018/05/03/还原OC对象的方法调用轨迹（下）/1.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="曹培の技术栈" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/appleImage.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/appleImage.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="曹培の技术栈" title="曹培の技术栈"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="曹培の技术栈">曹培の技术栈</a></h1>
+				<h2 class="blog-motto">拥抱变化</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:itenthusiast.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/05/03/还原OC对象的方法调用轨迹（下）/" title="还原OC对象的方法调用轨迹（下）" itemprop="url">还原OC对象的方法调用轨迹（下）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="曹培" target="_blank" itemprop="author">曹培</a>
+		
+  <p class="article-time">
+    <time datetime="2018-05-03T08:25:24.000Z" itemprop="datePublished"> Published 2018-05-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<p></p><h2>引言</h2><p></p>
+<p><h7><br>我们了解类的本质构成及“类继承体系”， superclass 指针确立了继承关系，而 isa 指针描述了当前实例对象所属的类，并却能够看出对象位于“类继承体系”的哪一部分。如果某对象传递消息：<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> returnValue = [object fun: parameter];</span><br></pre></td></tr></table></figure>编译器会把这条消息转换为如下函数：<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> returnValue = objc_msgSend(object, <span class="keyword">@selector</span>(fun:), parameter);</span><br></pre></td></tr></table></figure> objc_msgSend 函数会依据接受者与方法的类型来调用适当的方法。为了完成此操作，该函数需要在接受者所属的类中搜寻其“方法列表”（methods）（该函数会将匹配结果换存在“缓存表”（cache）里面，每个类都有这样一块缓存，便于下次还向该类发送此方法），如果能找到与方法名称相符的方法，就跳转至相对应的实现代码。若是找不到就沿着“类继承体系”的“方法调用轨迹”继续向上查找，找到了合适的方法之后再跳转至实现代码，在此之前都称为消息传递阶段。如果最终还是没找到相符的方法，那就执行“消息转发”（message forwarding）操作。
+<h2>消息转发（message forwarding）</h2>
+在编译期间向某类发送了其无法解读的消息并不会报错，因为在运行期可以继续向类中添加方法，所以编译器在编译时还无法确认类中会不会有该方法的实现。当最终都没能解读此消息后，就会启动 <b>消息转发（message forwarding）</b>机制。如果经过消息转发阶段仍未找到对象执行解读此消息，结果则会调用“doesNotRecognizeSelector”方法抛出异常以程序崩溃而告终。不过开发者在编写自己的类时，可在消息转发阶段设置“挂钩”，用以执行预定的逻辑，而不至于应用程序崩溃。
+<img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/1.png" class="[还原OC对象的方法调用轨迹（下）]">
+<b>消息转发阶段分为两大阶段：</b>第一阶段会先征询接受者所属的类，看其是否为该方法动态添加了方法的实现部分，称为<b>“动态方法解析”（dynamic method resolution）</b>；如果仍没解决问题会来到第二阶段，如果来到了该阶段，代表着接受者自己就无法再以动态新增方法的手段来响应该消息了。此时，运行期系统会请求接受者以其他手段来处理与消息相关的方法调用，又细分为两步：首先请接受者看有没有其他对象<b>“备援的接受者”（replacement receiver）</b>来处理这条消息，若存在，则把消息转发给那个对象，消息转发结束。若没有，则启动<b>“完整的消息转发机制”（full forwarding mechanism）</b>，运行期系统会把与该消息有关所有的细节封装到 NSInvocation 对象中，再给接受者最后一次机会，令其设法解决当前还未处理的消息。<br>
+<h3><b>1、动态方法解析（dynamic method resolution）</b></h3><br>
+对象在收到无法解读的消息后，首先会调用其所属类的下列方法：<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="built_in">BOOL</span>)resolveInstanceMethod: (SEL)selector <span class="comment">//方法类型为对象方法</span></span><br></pre></td></tr></table></figure>或者<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="built_in">BOOL</span>)resolveClassMethod: (SEL)selector <span class="comment">//方法类型为类方法</span></span><br></pre></td></tr></table></figure>表示这个类是否能够新增一个实例方法来处理这个消息。使用这个方法的前提是，该类已经把相关方法的实现代码准备好了，就等着运行的时候动态插在类里面就可以了。关于这的方案的应用<blockquote><footer><strong>Effective Objective-C 2.0</strong><cite>Matt Galloway（著） 爱飞翔（译）</cite></footer></blockquote>这本书举了“@dynamic”属性的实现为例子，实际开发中也可能会被用来“注入”调试信息，或者<a href="https://github.com/ITEnthusiast/TrendsAnalytics" target="_blank" rel="noopener">收集用户信息</a>等。
+<img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/2.png" class="[还原OC对象的方法调用轨迹（下）]"><br>
+<h3><b>2、备援接受者（replacement receiver）</b></h3><br>
+该阶段当前接受者还有第二次机会处理这个未知的消息，会调用 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="keyword">id</span>)forwardingTargetForSelector: (SEL)selector </span><br></pre></td></tr></table></figure>来获取备援接受者对象。一个对象的内部，可能还有一系列其他对象，该对象可经由此方法将能够处理该消息的相关内部对象当作结果返回。<br><img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/3.png" class="[还原OC对象的方法调用轨迹（下）]"><br><img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/4.png" class="[还原OC对象的方法调用轨迹（下）]"></h7></p>
+<p></p><h3><b>3、完整的消息转发机制（full forwarding mechanism）</b></h3><br>首先创建 NSInvocation 对象，把与尚未处理的那条消息有关的全部细节都封装在里面，这个对象包含方法、目标接受者及参数。<br>在触发 NSInvocation 对象时，“消息派发系统”（message-dispatch system）会调用<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)forwardingInvocation: (<span class="built_in">NSInvocation</span> *)invocation </span><br></pre></td></tr></table></figure>把消息指派给目标对象。该方法的实现内容大致分两种：第一种，简单的修改目标，使该消息在新目标上得以调用即可。由于此方法功能跟“备援接受者”阶段的效果一样，所以很少有人采用；第二种就是在消息被触发前，以某种方式改变消息本体的参数或更换消息等。这个阶段也可以调用父类的同名上述方法，这样继承体系中的每个类都有机会处理此调用请求，直至 NSObject 基类，继而还是会调用“doesNotRecognizeSelector”方法抛出异常，俗称程序崩溃。<br><img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/5.png" class="[还原OC对象的方法调用轨迹（下）]"><p></p>
+<p></p><h2>总结</h2><br><b>消息传递阶段</b>：作为面向对象高级编程语言几乎都有与之相对应的函数调用轨迹。<br><b>消息转发阶段</b>：接受者在每一步都有机会处理这个消息，只不过越往后，处理消息的代价就越大。“动态绑定”的机制为Object-C语言赋予了动态语言所拥有的特性，也因为此灵活性在代码执行速度上就不及“静态绑定”的函数调用操作那样迅速了，即使在类的内部缓存着曾经调用过的方法。消息转发全流程如下图：<br><img src="/2018/05/03/还原OC对象的方法调用轨迹（下）/6.jpg" class="[还原OC对象的方法调用轨迹（下）]"><br><p></p>
+<p></p><h2>参考文献：</h2><br><blockquote><p>第二章：对象、消息、运行期</p>
+<footer><strong>Effective Objective-C 2.0</strong><cite>Matt Galloway（著） 爱飞翔（译）</cite></footer></blockquote><p></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>►<a class="article-category-link" href="/categories/iOS/OC进阶语法/">OC进阶语法</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/objc消息转发机制/">objc消息转发机制</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://itenthusiast.github.io/2018/05/03/还原OC对象的方法调用轨迹（下）/" data-title="还原OC对象的方法调用轨迹（下） | 曹培の技术栈" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/05/11/Mac通过SSH连接iPhone/" title="Mac通过SSH连接iPhone">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Mac通过SSH连接iPhone</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2018/04/26/还原OC对象的方法调用轨迹（上）/"  title="还原OC对象的方法调用轨迹（上）">
+ <strong>下一篇：</strong><br/> 
+ <span>还原OC对象的方法调用轨迹（上）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">消息转发（message forwarding）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">1、动态方法解析（dynamic method resolution）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">2、备援接受者（replacement receiver）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">3、完整的消息转发机制（full forwarding mechanism）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Assembly/" title="Assembly">Assembly<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/OC进阶语法/" title="OC进阶语法">OC进阶语法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/ReactNative/" title="ReactNative">ReactNative<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/逆向开发/" title="逆向开发">逆向开发<sup>8</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/class-dump/" title="class-dump">class-dump<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cycript操作/" title="Cycript操作">Cycript操作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mach-O/" title="Mach-O">Mach-O<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac访问iPhone/" title="Mac访问iPhone">Mac访问iPhone<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML、CSS、JavaScript-DOM/" title="HTML、CSS、JavaScript DOM">HTML、CSS、JavaScript DOM<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/密钥、数字签名、证书/" title="密钥、数字签名、证书">密钥、数字签名、证书<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/iOS重签名/" title="iOS重签名">iOS重签名<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/iOS应用逆向工程/" title="iOS应用逆向工程">iOS应用逆向工程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Reveal/" title="Reveal">Reveal<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HopperDisassmbler/" title="HopperDisassmbler">HopperDisassmbler<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/theos/" title="theos">theos<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/tweak/" title="tweak">tweak<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hook/" title="Hook">Hook<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/脱壳/" title="脱壳">脱壳<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/KVO、KVC/" title="KVO、KVC">KVO、KVC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/函数调用流程/" title="函数调用流程">函数调用流程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/objc消息传递机制/" title="objc消息传递机制">objc消息传递机制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/objc消息转发机制/" title="objc消息转发机制">objc消息转发机制<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://www.jianshu.com/u/c3199741ad2c" target="_blank" title="简书">简书</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/ITEnthusiast" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/ITEnthusiast" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:admin@caopei.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="曹培">曹培</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

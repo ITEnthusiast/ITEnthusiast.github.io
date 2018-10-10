@@ -1,0 +1,580 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>浅析KVO、KVC | 曹培の技术栈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="曹培">
+    
+
+    
+    <meta name="description" content="KVOKey-Value Observing，“键值监听”：用于监听某一对象属性值的改变。 某一对象被监听后，系统利用 Runtime API 对该对象的原始类动态生成一个      “NSKVONotifying_CPPerson” 子类，并且让 instance 对象的 isa 指针指向这个子类。 在新生成的这个子类中会重写父类的 setAge:、class、dealloc、_isKVOA 四">
+<meta name="keywords" content="KVO、KVC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析KVO、KVC">
+<meta property="og:url" content="https://itenthusiast.github.io/2018/05/31/浅析KVO、KVC/index.html">
+<meta property="og:site_name" content="曹培の技术栈">
+<meta property="og:description" content="KVOKey-Value Observing，“键值监听”：用于监听某一对象属性值的改变。 某一对象被监听后，系统利用 Runtime API 对该对象的原始类动态生成一个      “NSKVONotifying_CPPerson” 子类，并且让 instance 对象的 isa 指针指向这个子类。 在新生成的这个子类中会重写父类的 setAge:、class、dealloc、_isKVOA 四">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://itenthusiast.github.io/2018/05/31/浅析KVO、KVC/1.png">
+<meta property="og:image" content="https://itenthusiast.github.io/2018/05/31/浅析KVO、KVC/2.png">
+<meta property="og:image" content="https://itenthusiast.github.io/2018/05/31/浅析KVO、KVC/3.png">
+<meta property="og:updated_time" content="2018-06-02T17:41:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅析KVO、KVC">
+<meta name="twitter:description" content="KVOKey-Value Observing，“键值监听”：用于监听某一对象属性值的改变。 某一对象被监听后，系统利用 Runtime API 对该对象的原始类动态生成一个      “NSKVONotifying_CPPerson” 子类，并且让 instance 对象的 isa 指针指向这个子类。 在新生成的这个子类中会重写父类的 setAge:、class、dealloc、_isKVOA 四">
+<meta name="twitter:image" content="https://itenthusiast.github.io/2018/05/31/浅析KVO、KVC/1.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="曹培の技术栈" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/appleImage.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/appleImage.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="曹培の技术栈" title="曹培の技术栈"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="曹培の技术栈">曹培の技术栈</a></h1>
+				<h2 class="blog-motto">拥抱变化</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:itenthusiast.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/05/31/浅析KVO、KVC/" title="浅析KVO、KVC" itemprop="url">浅析KVO、KVC</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="曹培" target="_blank" itemprop="author">曹培</a>
+		
+  <p class="article-time">
+    <time datetime="2018-05-31T12:31:15.000Z" itemprop="datePublished"> Published 2018-05-31</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<h2 id="KVO"><a href="#KVO" class="headerlink" title="KVO"></a>KVO</h2><p><strong>Key-Value Observing</strong>，“键值监听”：用于监听某一对象属性值的改变。</p>
+<p>某一对象被监听后，系统利用 Runtime API 对该对象的原始类动态生成一个      “<code>NSKVONotifying_CPPerson</code>” 子类，并且让 instance 对象的 isa 指针指向这个子类。</p>
+<p>在新生成的这个子类中会重写父类的 <code>setAge:</code>、<code>class</code>、<code>dealloc</code>、<code>_isKVOA</code> 四个方法。</p>
+<p>当被监听对象的属性值发生改变后，会在 <code>setAge:</code> 方法中调用 NSFoundation 的 “<code>_NSSetIntValueAndNotify</code>” 函数。且在该函数内部重写了父类的 <code>willChangeValueForKey：</code>、<code>setAge：</code>、<code>didChangeValueForKey：</code>方法。</p>
+<p>并且在 <code>didChangeValueForKey：</code>方法中出发监听器 Observe 的监听方法      “<code>observeValueForKeyPath: ofObject: change: context:</code>”。</p>
+<p>本质：</p>
+<ul>
+<li><p>由于 KVO 的本质是重写了原始类的 <code>Setter 方法</code>，所以像直接修改成员变量是不会触发监听方法的。</p>
+</li>
+<li><p>若想手动触发监听器的监听方法：手动执行       <code>willChangeValueForKey：</code>、<code>didChangeValueForKey：</code>方法。</p>
+</li>
+<li><img src="/2018/05/31/浅析KVO、KVC/1.png" class="[机型]" title="[100][100]">
+</li>
+</ul>
+<h2 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h2><p><strong>Key-Value Coding</strong>，“键值编码”：可以通过某一个 key 来访问对应的属性。</p>
+<p>KVC 不管有没有调用 <code>setter 方法</code>，都会触发 KVO 的监听方法。因为它会手动触发监听。</p>
+<p>赋值操作：<strong><code>setValue: forKey:</code></strong></p>
+<ul>
+<li><p>首先会寻找 <code>setAge:</code>、<code>_setAge:</code> 两个方法的实现。</p>
+</li>
+<li><p>若没有，会通过 <code>accessInstanceVariablesDirectly</code> 方法判断是否允许访问成员变量，若为 YES，则访问的顺序为 <code>_age</code>、<code>_isAge</code>、<code>age</code>、<code>isAge</code>。</p>
+<img src="/2018/05/31/浅析KVO、KVC/2.png" class="[机型]" title="[100][100]">
+</li>
+</ul>
+<p>取值操作：<strong><code>valueForKey:</code></strong></p>
+<ul>
+<li><p>首先会寻找 <code>getAge:</code>、<code>age:</code>、<code>isAge:</code>、<code>_age:</code> 四个方法的实现。</p>
+</li>
+<li><p>若没有，同上。</p>
+</li>
+<li><img src="/2018/05/31/浅析KVO、KVC/3.png" class="[机型]" title="[100][100]"></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>►<a class="article-category-link" href="/categories/iOS/OC进阶语法/">OC进阶语法</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/KVO、KVC/">KVO、KVC</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://itenthusiast.github.io/2018/05/31/浅析KVO、KVC/" data-title="浅析KVO、KVC | 曹培の技术栈" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/06/14/RN准备篇-web知识点扫盲/" title="RN准备篇-web知识点扫盲">
+  <strong>上一篇：</strong><br/>
+  <span>
+  RN准备篇-web知识点扫盲</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2018/05/28/iOS签名机制/"  title="iOS签名机制">
+ <strong>下一篇：</strong><br/> 
+ <span>iOS签名机制
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#KVO"><span class="toc-number">1.</span> <span class="toc-text">KVO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KVC"><span class="toc-number">2.</span> <span class="toc-text">KVC</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Assembly/" title="Assembly">Assembly<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/OC进阶语法/" title="OC进阶语法">OC进阶语法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/ReactNative/" title="ReactNative">ReactNative<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/逆向开发/" title="逆向开发">逆向开发<sup>8</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/class-dump/" title="class-dump">class-dump<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cycript操作/" title="Cycript操作">Cycript操作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mach-O/" title="Mach-O">Mach-O<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac访问iPhone/" title="Mac访问iPhone">Mac访问iPhone<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML、CSS、JavaScript-DOM/" title="HTML、CSS、JavaScript DOM">HTML、CSS、JavaScript DOM<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/密钥、数字签名、证书/" title="密钥、数字签名、证书">密钥、数字签名、证书<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/iOS重签名/" title="iOS重签名">iOS重签名<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/iOS应用逆向工程/" title="iOS应用逆向工程">iOS应用逆向工程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Reveal/" title="Reveal">Reveal<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HopperDisassmbler/" title="HopperDisassmbler">HopperDisassmbler<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/theos/" title="theos">theos<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/tweak/" title="tweak">tweak<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hook/" title="Hook">Hook<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/脱壳/" title="脱壳">脱壳<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/KVO、KVC/" title="KVO、KVC">KVO、KVC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/函数调用流程/" title="函数调用流程">函数调用流程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/objc消息传递机制/" title="objc消息传递机制">objc消息传递机制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/objc消息转发机制/" title="objc消息转发机制">objc消息转发机制<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://www.jianshu.com/u/c3199741ad2c" target="_blank" title="简书">简书</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/ITEnthusiast" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/ITEnthusiast" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:admin@caopei.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="曹培">曹培</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

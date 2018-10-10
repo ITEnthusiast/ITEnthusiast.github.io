@@ -1,0 +1,570 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>亲，iOS逆向开发了解一下 | 曹培の技术栈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="曹培">
+    
+
+    
+    <meta name="description" content="引言 打个比喻，iOS逆向工程就像一杆长矛，专门刺破 App 看似安全的防护盾。有趣的是，很多制作 App 的公司还没有意识到这样一杆长矛的存在，固步自封地以为自己的盾坚不可摧。 对于微信和 WhatApp 之类的 IM 应用，交流的信息是它们的核心对于银行、支付、电商类的软件。交易数据和客户信息是它们的核心。所有的核心数据都是需要重点保护的。于是开发人员通过反测试、数据加密、代码混淆等各种手段保">
+<meta name="keywords" content="iOS应用逆向工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="亲，iOS逆向开发了解一下">
+<meta property="og:url" content="https://itenthusiast.github.io/2018/05/17/亲，iOS逆向开发了解一下/index.html">
+<meta property="og:site_name" content="曹培の技术栈">
+<meta property="og:description" content="引言 打个比喻，iOS逆向工程就像一杆长矛，专门刺破 App 看似安全的防护盾。有趣的是，很多制作 App 的公司还没有意识到这样一杆长矛的存在，固步自封地以为自己的盾坚不可摧。 对于微信和 WhatApp 之类的 IM 应用，交流的信息是它们的核心对于银行、支付、电商类的软件。交易数据和客户信息是它们的核心。所有的核心数据都是需要重点保护的。于是开发人员通过反测试、数据加密、代码混淆等各种手段保">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://itenthusiast.github.io/2018/05/17/亲，iOS逆向开发了解一下/1.png">
+<meta property="og:updated_time" content="2018-05-17T07:08:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="亲，iOS逆向开发了解一下">
+<meta name="twitter:description" content="引言 打个比喻，iOS逆向工程就像一杆长矛，专门刺破 App 看似安全的防护盾。有趣的是，很多制作 App 的公司还没有意识到这样一杆长矛的存在，固步自封地以为自己的盾坚不可摧。 对于微信和 WhatApp 之类的 IM 应用，交流的信息是它们的核心对于银行、支付、电商类的软件。交易数据和客户信息是它们的核心。所有的核心数据都是需要重点保护的。于是开发人员通过反测试、数据加密、代码混淆等各种手段保">
+<meta name="twitter:image" content="https://itenthusiast.github.io/2018/05/17/亲，iOS逆向开发了解一下/1.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="曹培の技术栈" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/appleImage.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/appleImage.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="曹培の技术栈" title="曹培の技术栈"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="曹培の技术栈">曹培の技术栈</a></h1>
+				<h2 class="blog-motto">拥抱变化</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:itenthusiast.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/05/17/亲，iOS逆向开发了解一下/" title="亲，iOS逆向开发了解一下" itemprop="url">亲，iOS逆向开发了解一下</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="曹培" target="_blank" itemprop="author">曹培</a>
+		
+  <p class="article-time">
+    <time datetime="2018-05-17T01:26:41.000Z" itemprop="datePublished"> Published 2018-05-17</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
+<p>打个比喻，iOS逆向工程就像一杆长矛，专门刺破 App 看似安全的防护盾。有趣的是，很多制作 App 的公司还没有意识到这样一杆长矛的存在，固步自封地以为自己的盾坚不可摧。</p>
+<p>对于微信和 WhatApp 之类的 IM 应用，交流的信息是它们的核心对于银行、支付、电商类的软件。交易数据和客户信息是它们的核心。所有的核心数据都是需要重点保护的。于是开发人员通过反测试、数据加密、代码混淆等各种手段保护自己的 App，为的就是增加逆向工程的难度，避免类似的安全问题影响用户体验。</p>
+<p>可是目前 App 防护所用到的技术跟 iOS 逆向工程所使用的技术根本就不是同一个维度的。一般的 App 防护，感觉就像是一个城堡，将 App 的 MVC 布置在城堡内部，外围圈上厚厚的城墙，看上去易守难攻。但是当我们站到高处鸟瞰这个 App 所在的城堡，它的内部结构就不再是秘密。</p>
+<p>这时，所有的 Object-C 函数定义、所有的 property、所有的全局变量以及所有的逻辑完全暴露在我们面前，而城堡的防护意义荡然无存。处在这个维度，城墙已经不再是阻碍。我们更应该关注的是如何从诺大的城堡里找到那个要找的人。</p>
+<p>iOS 应用逆向工程可以“透视”市面上绝大多数 App，它们的设计理念与实现细节在逆向工程中暴露无遗。比如了解一些老牌经典软件、当下火热的 App 的技术点，引用了哪些 framework 库等。 对于iOS开发者来说，如果清楚的了解系统的 API 实现细节的话，无疑是对我们工作有帮助的。在自己的 App 里使用一些文档中没有提及的私有功能，了解官方系统级源码的开发规范等。善于学习、借鉴别人成熟的方案岂不是一件很愉快的事，相信这些会使得学习者的个人能力得到质的提升。</p>
+<p>以上比喻只是 iOS 逆向工程的一隅之见，但也形象地说明了 iOS 逆向工程的威力。概括的说，iOS 逆向工程主要有以下两个作用：</p>
+<p>1、分析目标程序，拿到关键信息，可以归类于安全相关的逆向工程；</p>
+<p>2、借鉴他人的程序功能来开发自己的软件，可以归类于正向开发相关的逆向工程；</p>
+</blockquote>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>最近有在了解一些 iOS 逆向开发相关概念，《iOS应用逆向工程》这本书则可以很好的解决我大部分疑惑。我觉得学习一项新技术或者新知识点，比较高效率的方法大概就是实践了。所以，你可能需要提前准备一台 iPhone 设备，一台已经完美越狱的 iPhone。硬件版本推荐最新的 RAM64 架构机型，也就是 iPhone5s 及以后版本。软件版本推荐是越狱较为稳定的 iOS8、9 系统。【本人在某宝入手一台：iPhone6s、iOS 9.1、16G内存、完美越狱、￥1680】PP助手越狱平台：<a href="http://jailbreak.25pp.com/" target="_blank" rel="noopener">http://jailbreak.25pp.com/</a></p>
+ <img src="/2018/05/17/亲，iOS逆向开发了解一下/1.png" class="[机型]" title="[100][100]">
+<h2 id="按下空格键预览逆向"><a href="#按下空格键预览逆向" class="headerlink" title="按下空格键预览逆向"></a>按下空格键预览逆向</h2><p>对于一款他人团队开发的软件，没有源码且不借助三方工具的情况下，我们能了解到的就是一个普通的用户视角所能呈现出的部分。不同的是，有类似开发经验者可以去猜测原作者实现逻辑的大致招数，实际上很多开发者初期的时候也都是这么做的，尝试了解一些经典软件的设计架构。但这么做有个问题在于，它受限于我们自身的知识储备、开发经验，可能一不小心就触发了我的知识盲区，这就有点尴尬，如果有妹子在场那就更得不偿失了。尝试去揣测他人作品的念头和行为本身就是逆向的思维，即使手段没那么高明。</p>
+<p>外挂、插件、破解等均属于逆向工程的应用，我们当然知道技术同样具有两面性，这里不谈“副作用”，只聊技术本身。</p>
+<p>本文就是记录一下如何更加科学的去逆向别人的 APP，以及沿途所需具备的知识点。具体技术细节另辟文章单独细述。</p>
+<h2 id="APP-逆向思路"><a href="#APP-逆向思路" class="headerlink" title="APP 逆向思路"></a>APP 逆向思路</h2><p>为了更方便的了解一些 iOS 逆向工程的理论，就要使用各种工具帮助学习者去实践。相对于正向开发的 Xcode 这样大而全的神器，逆向工程使用的工具就显的不那么“智能”了，很多工作需要我们提前手工完成。iOS 逆向工程的工具可以分为四大类：监测工具、反汇编工具、调试工具，以及开发工具。</p>
+<p>一款 APP，它的UI设计、操作逻辑、页面的层级结构，这些属于界面分析。除了正常上手使用了解，你可能还需要一些专业工具【Cycript、Reveal 这两款工具麻烦了解一下】来辅助你更优雅的完成这部分工作。</p>
+<p>我们想要更加深层次的了解 APP 的实现，如果能看到它的源码岂不是快哉？【这里有个概念可能会帮助你打消这个念头，反汇编原理麻烦了解一下】。实际上是有一些工具【class-dump、Hopper Disassembler、IDA等】来帮助我们一定程度上拿到部分代码逻辑，比如说头文件。值得注意的是，介于 Apple 的安全理念，我们从 AppStore 商店下载的 APP 都是经过加密过的，系统在可执行文件上进行了加壳操作。不过一些三方下载平台上的 APP 会提前完成去壳操作，比如PP助手。所以在使用上述工具进行抽取操作前需借助一些工具【otool、MachOView】判断当前这款软件是否仍被加壳，如果有，需要使用一些工具【clutch、dumpdecrypted】执行脱壳操作。如果我们了解关于【Mach-O】文件内部结构的话，这会有助于我们理解这一系列操作背后的原理。</p>
+<p>这里需要提的一点是，Mac 上我们可以在系统的 Terminal 终端程序中输入指令来完成一系列操作，在逆向开发过程中我们同样需要对 iPhone 设备做一些操作，比如Cycript、clutch、dumpdecrypted等命令工具均需要这些权限。但是 iPhone 上有没有类似终端一样的程序来完成这项工作，毕竟屏幕尺寸在这摆着呢，所以我们需要通过【SSH】的方式把拥有终端程序的 Mac 和 iPhone 设备连接起来。</p>
+<p>前面几个步骤都是在不运行目标程序的情况下进行分析，称其为静态分析。在我们日常正向开发 iOS 程序时除了构思、编码，更少不了在 Xcode 中断点调试和测试代码。那在 iOS 逆向工程中，用到的调试工具主要是【debugserver、LLDB等】，这个过程称为动态分析。</p>
+<p>从 UI 层面切入到代码层面，用反汇编工具和调试工具分析过二进制文件后，就可以整理分析结果，使用开发工具编写程序了。至于开发工具在越狱 iOS 中种类就不那么单一了，有基于 Xcode 的 iOSOpenDev，还有偏命令行的 【Theos】。</p>
+<p>以 UI 分析切入，锁定目标所属的控制器。根据拿到的类名，去 dump 出来的文件集合里找出对应的头文件。创建 tweak 项目，根据具体需求通过编写 tweak 程序修改原程序地执行逻辑，具体做法就是重写对应方法的实现，注入自己的逻辑。至于如何快速地决定采取何种策略修改功能，离不开正向开发积累的经验。比如去除 APP 内的广告，可以选择直接 remove 掉对应的控件，也可以选择过滤掉从服务器请求来的广告数据模型。最终完成后，以安装.deb插件的方式注入你想加入或去除的功能，然后就是【签名打包.ipa】。</p>
+<h2 id="未完待续。。。。。。"><a href="#未完待续。。。。。。" class="headerlink" title="未完待续。。。。。。"></a>未完待续。。。。。。</h2><p>可能吧。</p>
+<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><blockquote><p>第1章 概念篇；第3章 MacOS工具集；第4章 iOS工具集</p>
+<footer><strong>iOS应用逆向工程 第二版</strong><cite>沙梓社 吴航（著）</cite></footer></blockquote>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>►<a class="article-category-link" href="/categories/iOS/逆向开发/">逆向开发</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/iOS应用逆向工程/">iOS应用逆向工程</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://itenthusiast.github.io/2018/05/17/亲，iOS逆向开发了解一下/" data-title="亲，iOS逆向开发了解一下 | 曹培の技术栈" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/05/17/Mach-O文件细述/" title="Mach-O文件细述">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Mach-O文件细述</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2018/05/15/使用class-dump、HopperDisassmbler将反编译进行的更彻底/"  title="使用class-dump、HopperDisassmbler将反编译进行的更彻底">
+ <strong>下一篇：</strong><br/> 
+ <span>使用class-dump、HopperDisassmbler将反编译进行的更彻底
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备"><span class="toc-number">2.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按下空格键预览逆向"><span class="toc-number">3.</span> <span class="toc-text">按下空格键预览逆向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APP-逆向思路"><span class="toc-number">4.</span> <span class="toc-text">APP 逆向思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续。。。。。。"><span class="toc-number">5.</span> <span class="toc-text">未完待续。。。。。。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Assembly/" title="Assembly">Assembly<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/OC进阶语法/" title="OC进阶语法">OC进阶语法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/ReactNative/" title="ReactNative">ReactNative<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/逆向开发/" title="逆向开发">逆向开发<sup>8</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/class-dump/" title="class-dump">class-dump<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cycript操作/" title="Cycript操作">Cycript操作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mach-O/" title="Mach-O">Mach-O<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac访问iPhone/" title="Mac访问iPhone">Mac访问iPhone<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML、CSS、JavaScript-DOM/" title="HTML、CSS、JavaScript DOM">HTML、CSS、JavaScript DOM<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/密钥、数字签名、证书/" title="密钥、数字签名、证书">密钥、数字签名、证书<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/iOS重签名/" title="iOS重签名">iOS重签名<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/iOS应用逆向工程/" title="iOS应用逆向工程">iOS应用逆向工程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Reveal/" title="Reveal">Reveal<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HopperDisassmbler/" title="HopperDisassmbler">HopperDisassmbler<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/theos/" title="theos">theos<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/tweak/" title="tweak">tweak<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hook/" title="Hook">Hook<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/脱壳/" title="脱壳">脱壳<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/KVO、KVC/" title="KVO、KVC">KVO、KVC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/函数调用流程/" title="函数调用流程">函数调用流程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/objc消息传递机制/" title="objc消息传递机制">objc消息传递机制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/objc消息转发机制/" title="objc消息转发机制">objc消息转发机制<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://www.jianshu.com/u/c3199741ad2c" target="_blank" title="简书">简书</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/ITEnthusiast" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/ITEnthusiast" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:admin@caopei.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="曹培">曹培</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
