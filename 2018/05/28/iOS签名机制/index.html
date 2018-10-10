@@ -1,113 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
 
- <!DOCTYPE HTML>
-<html lang="zh-Hans">
+
+
+
 <head>
-  <meta charset="UTF-8">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
   
-    <title>iOS签名机制 | 曹培の技术栈</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+      <title>iOS签名机制 - 曹培の技术栈</title>
+  
+
+  
+  
+  <meta name="description" content="汪洋大海，给自己一片沙漠">
+  <meta name="author" content="曹培">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
     
-    <meta name="author" content="曹培">
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
     
 
-    
-    <meta name="description" content="引言曾几何时，人类变得越来越聪明，慢慢地，个体之间的信任问题也成了科技发展历程中的那条鲶鱼。 前段时间在了解 iOS 逆向开发时都是在越狱设备上进行修改、调试。若想在非越狱设备上“非法”安装 APP ，这事儿就变得没那么简单了。但是如果我们知道 Apple 对我们的 APP 都做了哪些防护处理，理论上是可以越过AppStore 直接在非越狱设备上安装应用的。在此之前有必要先了解一些身份认证相关的知">
-<meta name="keywords" content="密钥、数字签名、证书,iOS重签名">
-<meta property="og:type" content="article">
-<meta property="og:title" content="iOS签名机制">
-<meta property="og:url" content="https://itenthusiast.github.io/2018/05/28/iOS签名机制/index.html">
-<meta property="og:site_name" content="曹培の技术栈">
-<meta property="og:description" content="引言曾几何时，人类变得越来越聪明，慢慢地，个体之间的信任问题也成了科技发展历程中的那条鲶鱼。 前段时间在了解 iOS 逆向开发时都是在越狱设备上进行修改、调试。若想在非越狱设备上“非法”安装 APP ，这事儿就变得没那么简单了。但是如果我们知道 Apple 对我们的 APP 都做了哪些防护处理，理论上是可以越过AppStore 直接在非越狱设备上安装应用的。在此之前有必要先了解一些身份认证相关的知">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://itenthusiast.github.io/2018/05/28/iOS签名机制/1.png">
-<meta property="og:image" content="https://itenthusiast.github.io/2018/05/28/iOS签名机制/2.png">
-<meta property="og:image" content="https://itenthusiast.github.io/2018/05/28/iOS签名机制/3.png">
-<meta property="og:image" content="https://itenthusiast.github.io/2018/05/28/iOS签名机制/4.png">
-<meta property="og:image" content="https://itenthusiast.github.io/2018/05/28/iOS签名机制/5.png">
-<meta property="og:image" content="https://itenthusiast.github.io/2018/05/28/iOS签名机制/6.png">
-<meta property="og:image" content="https://itenthusiast.github.io/2018/05/28/iOS签名机制/7.png">
-<meta property="og:updated_time" content="2018-05-28T13:03:58.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS签名机制">
-<meta name="twitter:description" content="引言曾几何时，人类变得越来越聪明，慢慢地，个体之间的信任问题也成了科技发展历程中的那条鲶鱼。 前段时间在了解 iOS 逆向开发时都是在越狱设备上进行修改、调试。若想在非越狱设备上“非法”安装 APP ，这事儿就变得没那么简单了。但是如果我们知道 Apple 对我们的 APP 都做了哪些防护处理，理论上是可以越过AppStore 直接在非越狱设备上安装应用的。在此之前有必要先了解一些身份认证相关的知">
-<meta name="twitter:image" content="https://itenthusiast.github.io/2018/05/28/iOS签名机制/1.png">
 
-    
-    <link rel="alternative" href="/atom.xml" title="曹培の技术栈" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/appleImage.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/appleImage.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <script src="//cdn1.lncld.net/static/js/3.6.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
 
-  <body>
-    <header>
-      
-<div>
+ 
+
+<header id="header" class='header'>
+	<div class="header-title">
 		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="曹培の技术栈" title="曹培の技术栈"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="曹培の技术栈">曹培の技术栈</a></h1>
-				<h2 class="blog-motto">拥抱变化</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/about">关于</a></li>
-					
-						<li><a href="/隐私">隐私</a></li>
-					
-						<li><a href="/测试">测试</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:itenthusiast.github.io">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
+		<div class='header-logo'>
+			<a href='/'>
+				<img src='/images/appleImage.jpg' />
+			</a>
+		</div>
+		<div class='header-text'>
+			<h1>
+				<a href="/">曹培の技术栈</a>
+			</h1>
+			<subtitle>
+				拥抱变化
+			</subtitle>
+		</div>
+		
+	</div>
+	<div id='header-nav'>
+		
+
+
+
+<nav id="nav">
+	
+	
+	
+	<div class='nav-item' id='nav-item-toc'>
+		
+
+
+<div class='toc-container'>
+<i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#身份认证"><span class="toc-number">2.</span> <span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对称密钥"><span class="toc-number">3.</span> <span class="toc-text">对称密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#公开密钥"><span class="toc-number">4.</span> <span class="toc-text">公开密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字签名"><span class="toc-number">5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字证书"><span class="toc-number">6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-签名机制"><span class="toc-number">7.</span> <span class="toc-text">iOS 签名机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">8.</span> <span class="toc-text">参考文献：</span></a></li></ol>
 </div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2018/05/28/iOS签名机制/" title="iOS签名机制" itemprop="url">iOS签名机制</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="曹培" target="_blank" itemprop="author">曹培</a>
+<div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
+    <img src="/images/icons/blue-shadow/toc.svg" alt="">
+</div>
+
+	</div>
+	
+	<div class='nav-item' id='nav-item-archive'>
 		
-  <p class="article-time">
-    <time datetime="2018-05-28T10:07:50.000Z" itemprop="datePublished"> Published 2018-05-28</time>
-    
-  </p>
+				<div class='nav-icon'>
+				
+			<a href="/archives/" title='Archives'>
+			<img src="/images/icons/blue-shadow/archive.svg" alt="">
+			</a>
+		</div>
+	</div>
+	<div class='nav-item' id='nav-item-search'>
+		
+		<div class='nav-icon'>
+		
+			<a href="/search/" title='Search'>
+			<img src="/images/icons/blue-shadow/search.svg" alt="">
+			</a>
+		</div>
+	</div>
+	<div class="nav-item" id='nav-item-more'>
+		<div class="nav-icon">
+				<a href='#' onclick='onClickMenuIcon(event);' ontouchstart='onClickMenuIcon(event);'>
+				<img src="/images/icons/blue-shadow/menu.svg" alt="">
+				</a>
+		</div>
+		<div class="nav-more-menu">
+				<i class="far fa-times-circle" id='nav-more-menu-close' onclick='onClickNavMenuClose(event);' ontouchstart='onClickNavMenuClose(event);'></i>
+		
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/iOS/">
+						<span>Ios</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/ReactNative/">
+						<span>Reactnative</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/逆向开发/">
+						<span>逆向开发</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/Assembly/">
+						<span>Assembly</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/OC进阶语法/">
+						<span>Oc进阶语法</span>
+					</a>
+				</div>
+		</div>
+		
+	</div>
+	</div>
+</nav>
+
+	</div>
 </header>
-	<div class="article-content">
+
+ 
+
+  
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      <style>
+    body {
+        background-color: white;
+    }
+</style>
+
+
+
+
+
+
+
+
+    
+        
+            
+            
+        
+    
+        
+    
+
+
+
+
+
+
+    
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+<article class="article" id="/2018/05/28/iOS签名机制/" data-name='iOS签名机制' data-version="">
+
+    <!-- Title -->
+    <div class='article-header'>
+         
+         <h1 class='article-title'>
+            <a href="/2018/05/28/iOS签名机制/">
+                iOS签名机制
+            </a>
+        </h1>
+        <!-- TODO: support nested categories,display them nicely -->
+        
+        <ul class='article-categories'>
+            
+            
+                <li><a href="/categories/iOS/" data-no-instant>
+                    <img src="/images/iOS.svg" alt="iOS" onerror='if(this.src != "/images/uncategorized.svg") this.src="/images/uncategorized.svg"' title='iOS'/>
+                </a></li>
+            
+            
+                <li><a href="/categories/iOS/逆向开发/" data-no-instant>
+                    <img src="/images/逆向开发.svg" alt="逆向开发" onerror='if(this.src != "/images/uncategorized.svg") this.src="/images/uncategorized.svg"' title='逆向开发'/>
+                </a></li>
+            
+        </ul>
+        
+    </div>
+    
+    <!-- Date and Author -->
+    <div class='article-meta'>
+    <ul>
+            <li><i class='fa fa-calendar'></i> 2018-05-28</li>
+            
+            <li><i class="fa fa-user"></i> 曹培</li>
+            <li><i class="fas fa-copyright"></i>
+            
+                
+                
+            
+            
+                <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/>CC BY-NC-ND 4.0</a>
+            
+            </li>
+    </ul>
+    
+<div class="tags">
+	
 		
-		<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>曾几何时，人类变得越来越聪明，慢慢地，个体之间的信任问题也成了科技发展历程中的那条鲶鱼。</p>
+			<label class='tag-1'><a href="/tags/iOS重签名/">Ios重签名</a></label>
+		
+	
+		
+			<label class='tag-2'><a href="/tags/密钥、数字签名、证书/">密钥、数字签名、证书</a></label>
+		
+	
+	</div>
+
+    </div>
+    <div class='article-cards'>
+        <!-- Author Card -->
+        <!---
+        <div class='Card-article Card-author'>
+            <div class='card-title'>
+                <h3></h3>
+            </div>
+            <div class='card-content'>
+                    <div class="author-meta">
+                            <div class='author-figure'>
+                                <img src="" alt="">
+                            </div>
+                            <div class='author-name'>
+                                曹培
+                            </div>
+                        </div>
+                        <div class="author-ai">
+                            <div class='author-intro'>
+                                <!-- TODO: auto generating author description -->
+                                <!-- 
+                            </div>
+                            <div class="author-articles">
+                                <!-- TODO: auto generating author articles -->
+                                <!-- <ul>
+                                    <li>Article 1</li>
+                                    <li>Article 2</li>
+                                    <li>Article 3</li>
+                                    <li>Article 4</li>
+                                    <li>Article 5</li>
+                                    <li>Article 6</li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+            
+        </div> -->
+
+        <!-- Visit Card -->
+        <!-- <div class="Card-article Card-visit"> -->
+            <!-- <div class="card-title">
+  <h3>Post Visit</h3>
+</div>
+<div class="card-chart">
+  <div id='chart-post-visit'></div>
+</div> -->
+        <!-- </div> -->
+        
+        <!-- Auto Excerpt Card -->
+        <!-- <div class="Card-article Card-excerpt">
+            <div class="card-title">
+  <h3>Quick Read</h3>
+</div>
+<div class="card-text">
+  <p id='text-post-summary'>引言曾几何时，人类变得越来越聪明，慢慢地，个体之间的信任问题也成了科技发展历程中的那条鲶鱼。
+前段时间在了解 iOS 逆向开发时都是在越狱设备上进行修改、调试。若想在非越狱设备上“非法”安装 APP ，这事儿就变得没那么简单了。但是如果我们知道 Apple 对我们的 APP 都做了哪些防护处理，理论上是可以越过AppStore 直接在非越狱设备上安装应用的。在此之前有必要先了解一些身份认证相关的知识点。
+身份认证认证就意味着，需要你提供一些身份证明，来证明你是谁。HTTP 提供了一个原生的 质询/响应框架（challenge/response） ：Web 应用程序收到一条 HTTP...</p>
+</div>
+        </div> -->
+    </div>
+    
+    <!-- Gallery -->
+    <!-- TODO: add a slider to gallery -->
+    
+
+    <!-- Content -->
+    <!-- TODO: support table of content -->
+    <div class="article-toc" id='article-toc'>
+    
+        
+
+
+<div class='toc-container'>
+<i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#身份认证"><span class="toc-number">2.</span> <span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对称密钥"><span class="toc-number">3.</span> <span class="toc-text">对称密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#公开密钥"><span class="toc-number">4.</span> <span class="toc-text">公开密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字签名"><span class="toc-number">5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字证书"><span class="toc-number">6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-签名机制"><span class="toc-number">7.</span> <span class="toc-text">iOS 签名机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">8.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+</div>
+<div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
+    <img src="/images/icons/blue-shadow/toc.svg" alt="">
+</div>
+
+    </div>
+    <div class='article-content'>
+    <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>曾几何时，人类变得越来越聪明，慢慢地，个体之间的信任问题也成了科技发展历程中的那条鲶鱼。</p>
 <p>前段时间在了解 iOS 逆向开发时都是在越狱设备上进行修改、调试。若想在非越狱设备上“非法”安装 APP ，这事儿就变得没那么简单了。但是如果我们知道 Apple 对我们的 APP 都做了哪些防护处理，理论上是可以越过AppStore 直接在非越狱设备上安装应用的。在此之前有必要先了解一些身份认证相关的知识点。</p>
 <h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><p>认证就意味着，需要你提供一些身份证明，来证明你是谁。HTTP 提供了一个原生的 <em>质询/响应框架（challenge/response）</em> ：Web 应用程序收到一条 HTTP 请求报文时，服务器没有按照请求执行动作，而是以一个“认证询问”进行响应，要求用户提供一些保密信息来证明他是谁。</p>
 <p>HTTP 通过一组可定制的控制首部，为不同的认证协议提供了一个可拓展框架。 两个官方的认证协议：基本认证、摘要认证。</p>
@@ -130,390 +414,158 @@
 <img src="/2018/05/28/iOS签名机制/6.png" class="[机型]" title="[100][100]">
 <img src="/2018/05/28/iOS签名机制/7.png" class="[机型]" title="[100][100]">
 <h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><blockquote><p>第三部分 识别、认证与安全</p>
-<footer><strong>HTTP权威指南</strong><cite>David Gourley等（著） 陈涓 赵振平（译）</cite></footer></blockquote>  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
+<footer><strong>HTTP权威指南</strong><cite>David Gourley等（著） 陈涓 赵振平（译）</cite></footer></blockquote>
+    
+    </div>
+    
+    
+        <div class="article-comment" id='article-comment'>
+            
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/iOS/">iOS</a>►<a class="article-category-link" href="/categories/iOS/逆向开发/">逆向开发</a>
-</div>
+<h1>Comment</h1>
 
-
-  <div class="article-tags">
   
-  <span></span> <a href="/tags/密钥、数字签名、证书/">密钥、数字签名、证书</a><a href="/tags/iOS重签名/">iOS重签名</a>
+    <div id="comment-not-available">
+      Not available
+      <p><strong>For site maintainer: Please provide <code>appId</code> and <code>appKey</code> in your <code>_data/cutie.yml</code> file for <code>valine</code> comment system.</strong></p>
+    </div>
+  
+
+
+        </div>
+        
+</article>
   </div>
 
-</div>
+  
 
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="https://itenthusiast.github.io/2018/05/28/iOS签名机制/" data-title="iOS签名机制 | 曹培の技术栈" data-tsina="" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
+<footer id='footer'>
+    <div class='footer-copyright'>
+        <div>
+            <p> Copyright by <a href="">曹培 </a> @ 2018</p>
+            <p>Designed by: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> and <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; Theme: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; Powered by <a href="http://hexo.io">Hexo.</a></p>
+        </div>
+    </div>
+    
+    <div class='footer-social'>
+        
+            
+                
+                    <div class='footer-social-item'><a href='https://github.com/ITEnthusiast' target='_blank' ><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
+                
+            
+                
+                    <div class='footer-social-item'><a href='https://www.jianshu.com/u/c3199741ad2c' target='_blank' ><i class="fab fa-简书 fa-2x" aria-hidden="true"></i></a></div>
+                
+            
+        
+    </div>
 </footer>
 
-   	       
-	</article>
+  <br>
+
+  <div id="footer-nav" class='footer-nav'>
+		
+
+
+
+<nav id="nav">
 	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2018/05/31/浅析KVO、KVC/" title="浅析KVO、KVC">
-  <strong>上一篇：</strong><br/>
-  <span>
-  浅析KVO、KVC</span>
-</a>
+	
+	
+	<div class='nav-item' id='nav-item-toc'>
+		
+
+
+<div class='toc-container'>
+<i class="far fa-times-circle" id='toc-close' onclick='closeTOC(event);' ontouchstart='closeTOC(event);'></i>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#身份认证"><span class="toc-number">2.</span> <span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对称密钥"><span class="toc-number">3.</span> <span class="toc-text">对称密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#公开密钥"><span class="toc-number">4.</span> <span class="toc-text">公开密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字签名"><span class="toc-number">5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字证书"><span class="toc-number">6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-签名机制"><span class="toc-number">7.</span> <span class="toc-text">iOS 签名机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">8.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+</div>
+<div class="toc-button" onclick='toggleTOC(event);' ontouchstart='toggleTOC(event);'>
+    <img src="/images/icons/blue-shadow/toc.svg" alt="">
 </div>
 
-
-<div class="next">
-<a href="/2018/05/17/使用theos肆无忌惮的Hook/"  title="使用theos肆无忌惮的Hook">
- <strong>下一篇：</strong><br/> 
- <span>使用theos肆无忌惮的Hook
-</span>
-</a>
-</div>
-
+	</div>
+	
+	<div class='nav-item' id='nav-item-archive'>
+		
+				<div class='nav-icon'>
+				
+			<a href="/archives/" title='Archives'>
+			<img src="/images/icons/blue-shadow/archive.svg" alt="">
+			</a>
+		</div>
+	</div>
+	<div class='nav-item' id='nav-item-search'>
+		
+		<div class='nav-icon'>
+		
+			<a href="/search/" title='Search'>
+			<img src="/images/icons/blue-shadow/search.svg" alt="">
+			</a>
+		</div>
+	</div>
+	<div class="nav-item" id='nav-item-more'>
+		<div class="nav-icon">
+				<a href='#' onclick='onClickMenuIcon(event);' ontouchstart='onClickMenuIcon(event);'>
+				<img src="/images/icons/blue-shadow/menu.svg" alt="">
+				</a>
+		</div>
+		<div class="nav-more-menu">
+				<i class="far fa-times-circle" id='nav-more-menu-close' onclick='onClickNavMenuClose(event);' ontouchstart='onClickNavMenuClose(event);'></i>
+		
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/iOS/">
+						<span>Ios</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/ReactNative/">
+						<span>Reactnative</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/逆向开发/">
+						<span>逆向开发</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/Assembly/">
+						<span>Assembly</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/OC进阶语法/">
+						<span>Oc进阶语法</span>
+					</a>
+				</div>
+		</div>
+		
+	</div>
+	</div>
 </nav>
 
-	
-
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#身份认证"><span class="toc-number">2.</span> <span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对称密钥"><span class="toc-number">3.</span> <span class="toc-text">对称密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#公开密钥"><span class="toc-number">4.</span> <span class="toc-text">公开密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字签名"><span class="toc-number">5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字证书"><span class="toc-number">6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-签名机制"><span class="toc-number">7.</span> <span class="toc-text">iOS 签名机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献："><span class="toc-number">8.</span> <span class="toc-text">参考文献：</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside class="clearfix">
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">Categories</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/Assembly/" title="Assembly">Assembly<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/iOS/OC进阶语法/" title="OC进阶语法">OC进阶语法<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/ReactNative/" title="ReactNative">ReactNative<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/iOS/逆向开发/" title="逆向开发">逆向开发<sup>8</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/class-dump/" title="class-dump">class-dump<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cycript操作/" title="Cycript操作">Cycript操作<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mach-O/" title="Mach-O">Mach-O<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mac访问iPhone/" title="Mac访问iPhone">Mac访问iPhone<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML、CSS、JavaScript-DOM/" title="HTML、CSS、JavaScript DOM">HTML、CSS、JavaScript DOM<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Bootstrap/" title="Bootstrap">Bootstrap<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/密钥、数字签名、证书/" title="密钥、数字签名、证书">密钥、数字签名、证书<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/iOS重签名/" title="iOS重签名">iOS重签名<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/iOS应用逆向工程/" title="iOS应用逆向工程">iOS应用逆向工程<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Reveal/" title="Reveal">Reveal<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HopperDisassmbler/" title="HopperDisassmbler">HopperDisassmbler<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/theos/" title="theos">theos<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/tweak/" title="tweak">tweak<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Hook/" title="Hook">Hook<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/脱壳/" title="脱壳">脱壳<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/函数调用流程/" title="函数调用流程">函数调用流程<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/KVO、KVC/" title="KVO、KVC">KVO、KVC<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/objc消息传递机制/" title="objc消息传递机制">objc消息传递机制<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/objc消息转发机制/" title="objc消息转发机制">objc消息转发机制<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">Links</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="https://www.jianshu.com/u/c3199741ad2c" target="_blank" title="简书">简书</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://github.com/ITEnthusiast" target="_blank" title="Github">Github</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
 	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		<a href="https://github.com/https://github.com/ITEnthusiast" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<a href="mailto:admin@caopei.cn" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
 
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
-		
-		<a href="/about" target="_blank" title="曹培">曹培</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
   
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
 
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
 
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
+    
 
 
 
@@ -521,69 +573,64 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type='text/javascript'>
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
     });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
+</script>
+
+
+
+
+
+
+<script type='text/javascript'>
+
+  
+  // update cookie if this page is opened (directly)
+  loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+  loadjs.ready('post-version', function(){
+    
+    new Postv2('hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5').update('hashit_4dfd850e2b74907718ca2e3073ced6de5bc679f53c3bd48ec0602cfb51261973', function(){});
   });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
+  
 </script>
 
 
 
-<!-- Analytics Begin -->
+<!-- <script src="/js/post.js"></script> -->
 
+<script src="/js/headroom.min.js"></script>
 
+<script data-no-instant type='text/javascript'>
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// post.getCommentCount(window.location.pathname, function(count){
+//     $('#article-comment-count').text(count);
+// });
+// post.addVisitRecord(window.location.pathname, userip);
+// post.getVisitCount(window.location.pathname, function(count){
+//     $('#article-visit-count').text(count);
+// });
+
+// 
 </script>
 
 
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<!-- Tiny_search End -->
-
-  </body>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
 </html>

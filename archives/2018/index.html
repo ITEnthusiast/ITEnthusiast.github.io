@@ -1,396 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
 
-  <!DOCTYPE HTML>
-<html lang="zh-Hans">
+
+
+
 <head>
-  <meta charset="UTF-8">
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
   
-    <title>Archives: 2018 | 曹培の技术栈</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+      <title>2018 - Archive - 曹培の技术栈</title>
+  
+
+  
+  
+  <meta name="description" content="汪洋大海，给自己一片沙漠">
+  <meta name="author" content="曹培">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- load loadjs.js -->
+  <script src="/libs/loadjs/dist/loadjs.min.js"></script>
+
+
+<link rel="stylesheet" href="/libs/animate.css/animate.min.css">
+  <!-- load lightgallery -->
+<link rel="stylesheet" href="/css/lightgallery.css">
+<link rel="stylesheet" href="/libs/noty/lib/noty.css">
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+    <link rel="stylesheet" href="/css/taurus.css">
     
-    <meta name="author" content="曹培">
+        <link rel="stylesheet" href="/css/scheme-taurus/animations.css">
     
 
-    
-    <meta name="description" content="这是一个利用Hexo搭建的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="曹培の技术栈">
-<meta property="og:url" content="https://itenthusiast.github.io/archives/2018/index.html">
-<meta property="og:site_name" content="曹培の技术栈">
-<meta property="og:description" content="这是一个利用Hexo搭建的博客">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="曹培の技术栈">
-<meta name="twitter:description" content="这是一个利用Hexo搭建的博客">
 
-    
-    <link rel="alternative" href="/atom.xml" title="曹培の技术栈" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/appleImage.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/appleImage.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/.css">
+
+  <!-- load font awesome 5 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <!-- load mathjax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax//libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- load js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/social-share.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+  <!-- include cookie.js -->
+  
+  
+
+  <!-- include comment system code -->
+  
+    <script src="//cdn1.lncld.net/static/js/3.6.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
 
-    <body>
-      <header>
-        
-<div>
+ 
+
+<header id="header" class='header'>
+	<div class="header-title">
 		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="曹培の技术栈" title="曹培の技术栈"/></a>
-			</div>
+		<div class='header-logo'>
+			<a href='/'>
+				<img src='/images/appleImage.jpg' />
+			</a>
+		</div>
+		<div class='header-text'>
+			<h1>
+				<a href="/">曹培の技术栈</a>
+			</h1>
+			<subtitle>
+				拥抱变化
+			</subtitle>
+		</div>
+		
+	</div>
+	<div id='header-nav'>
+		
+
+
+
+<nav id="nav">
+	
+	
+	
+	<div class='nav-item' id='nav-item-archive'>
+		
+				<div class='nav-icon active_dot'>
+				
+			<a href="/archives/" title='Archives'>
+			<img src="/images/icons/blue-shadow/archive.svg" alt="">
+			</a>
+		</div>
+	</div>
+	<div class='nav-item' id='nav-item-search'>
+		
+		<div class='nav-icon'>
+		
+			<a href="/search/" title='Search'>
+			<img src="/images/icons/blue-shadow/search.svg" alt="">
+			</a>
+		</div>
+	</div>
+	<div class="nav-item" id='nav-item-more'>
+		<div class="nav-icon">
+				<a href='#' onclick='onClickMenuIcon(event);' ontouchstart='onClickMenuIcon(event);'>
+				<img src="/images/icons/blue-shadow/menu.svg" alt="">
+				</a>
+		</div>
+		<div class="nav-more-menu">
+				<i class="far fa-times-circle" id='nav-more-menu-close' onclick='onClickNavMenuClose(event);' ontouchstart='onClickNavMenuClose(event);'></i>
+		
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/iOS/">
+						<span>Ios</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/ReactNative/">
+						<span>Reactnative</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/逆向开发/">
+						<span>逆向开发</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/Assembly/">
+						<span>Assembly</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/OC进阶语法/">
+						<span>Oc进阶语法</span>
+					</a>
+				</div>
+		</div>
+		
+	</div>
+	</div>
+</nav>
+
+	</div>
+</header>
+
+ 
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="flex: 1;">
+      
+	
+	
+
+	
+		<h2 class='archive-title'>2018</h2>
+	
+	<div class="archive-cards">
+	
+		
+
+
+
+
+<div class='Card-archive' id='hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f' data-name='RN准备篇-web知识点扫盲' data-version=''>
+	<mark class='Card-badge'></mark>
+	<div class="Card-body">
+		<h3 class='Card-title'>
 			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="曹培の技术栈">曹培の技术栈</a></h1>
-				<h2 class="blog-motto">拥抱变化</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/about">关于</a></li>
-					
-						<li><a href="/隐私">隐私</a></li>
-					
-						<li><a href="/测试">测试</a></li>
-					
+				<a href="/2018/06/14/RN准备篇-web知识点扫盲/">
+			
+			RN准备篇-Web知识点扫盲</a>
+		</h3>
+		<div class="Card-meta">
+			<div class='Card-tags'>
+<div class="tags">
+	
+		
+			
+				<label class='tag-1'><a href="/tags/Bootstrap/">Bootstrap</a></label>
+			
+		
+	
+		
+			
+				<label class='tag-2'><a href="/tags/HTML、CSS、JavaScript-DOM/">Html、css、javascript dom</a></label>
+			
+		
+	
+		
+			
+				<label class='tag-3'><a href="/tags/jQuery/">Jquery</a></label>
+			
+		
+	
+	</div>
+</div>
+			<ul>
 					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:itenthusiast.github.io">
-					</form>
-					
+						<a href="/archives/">
+							<i class='fa fa-calendar'></i> 2018-06-14
+						</a>
 					</li>
-				</ul>
-			</nav>			
+					
+					
+					
+			</ul>
+		</div>
+	</div>
 </div>
-      </header>
-      <div id="container">
-        
 
-<div class="archive-title" >
-  <h2 class="archive-icon">2018</h2>
-  
-  <div class="archiveslist archive-float clearfix">
-   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">Oct 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">Jun 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">Apr 2018</a><span class="archive-list-count">2</span></li></ul>
- </div>
-  
+	
+		
+
+
+
+
+<div class='Card-archive' id='hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e' data-name='浅析KVO、KVC' data-version=''>
+	<mark class='Card-badge'></mark>
+	<div class="Card-body">
+		<h3 class='Card-title'>
+			
+				<a href="/2018/05/31/浅析KVO、KVC/">
+			
+			浅析KVO、KVC</a>
+		</h3>
+		<div class="Card-meta">
+			<div class='Card-tags'>
+<div class="tags">
+	
+		
+			
+				<label class='tag-1'><a href="/tags/KVO、KVC/">Kvo、kvc</a></label>
+			
+		
+	
+	</div>
 </div>
-<div id="main" class="archive-part clearfix">
-  <div id="archive-page">
+			<ul>
+					<li>
+						<a href="/archives/">
+							<i class='fa fa-calendar'></i> 2018-05-31
+						</a>
+					</li>
+					
+					
+					
+			</ul>
+		</div>
+	</div>
+</div>
 
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2018/10/10/测试/" title="测试" itemprop="url">
-  
-
-    <time datetime="2018-10-10T02:51:56.000Z" itemprop="datePublished">2018-10-10</time>
-
-
-    <h1 itemprop="name">测试</h1>
-
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2018/06/14/RN准备篇-web知识点扫盲/" title="RN准备篇-web知识点扫盲" itemprop="url">
-  
-
-    <time datetime="2018-06-14T08:34:51.000Z" itemprop="datePublished">2018-06-14</time>
+	
+		
 
 
-    <h1 itemprop="name">RN准备篇-web知识点扫盲</h1>
-
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2018/05/31/浅析KVO、KVC/" title="浅析KVO、KVC" itemprop="url">
-  
-
-    <time datetime="2018-05-31T12:31:15.000Z" itemprop="datePublished">2018-05-31</time>
 
 
-    <h1 itemprop="name">浅析KVO、KVC</h1>
+<div class='Card-archive' id='hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5' data-name='iOS签名机制' data-version=''>
+	<mark class='Card-badge'></mark>
+	<div class="Card-body">
+		<h3 class='Card-title'>
+			
+				<a href="/2018/05/28/iOS签名机制/">
+			
+			iOS签名机制</a>
+		</h3>
+		<div class="Card-meta">
+			<div class='Card-tags'>
+<div class="tags">
+	
+		
+			
+				<label class='tag-1'><a href="/tags/iOS重签名/">Ios重签名</a></label>
+			
+		
+	
+		
+			
+				<label class='tag-2'><a href="/tags/密钥、数字签名、证书/">密钥、数字签名、证书</a></label>
+			
+		
+	
+	</div>
+</div>
+			<ul>
+					<li>
+						<a href="/archives/">
+							<i class='fa fa-calendar'></i> 2018-05-28
+						</a>
+					</li>
+					
+					
+					
+			</ul>
+		</div>
+	</div>
+</div>
 
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2018/05/28/iOS签名机制/" title="iOS签名机制" itemprop="url">
-  
-
-    <time datetime="2018-05-28T10:07:50.000Z" itemprop="datePublished">2018-05-28</time>
-
-
-    <h1 itemprop="name">iOS签名机制</h1>
-
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2018/05/17/使用theos肆无忌惮的Hook/" title="使用theos肆无忌惮的Hook" itemprop="url">
-  
-
-    <time datetime="2018-05-17T07:08:55.000Z" itemprop="datePublished">2018-05-17</time>
-
-
-    <h1 itemprop="name">使用theos肆无忌惮的Hook</h1>
-
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2018/05/17/Mach-O文件细述/" title="Mach-O文件细述" itemprop="url">
-  
-
-    <time datetime="2018-05-17T06:46:35.000Z" itemprop="datePublished">2018-05-17</time>
-
-
-    <h1 itemprop="name">Mach-O文件细述</h1>
-
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2018/05/17/亲，iOS逆向开发了解一下/" title="亲，iOS逆向开发了解一下" itemprop="url">
-  
-
-    <time datetime="2018-05-17T01:26:41.000Z" itemprop="datePublished">2018-05-17</time>
+	
+		
 
 
-    <h1 itemprop="name">亲，iOS逆向开发了解一下</h1>
-
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2018/05/15/使用class-dump、HopperDisassmbler将反编译进行的更彻底/" title="使用class-dump、HopperDisassmbler将反编译进行的更彻底" itemprop="url">
-  
-
-    <time datetime="2018-05-15T06:30:46.000Z" itemprop="datePublished">2018-05-15</time>
 
 
-    <h1 itemprop="name">使用class-dump、HopperDisassmbler将反编译进行的更彻底</h1>
+<div class='Card-archive' id='hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249' data-name='使用theos肆无忌惮的Hook' data-version=''>
+	<mark class='Card-badge'></mark>
+	<div class="Card-body">
+		<h3 class='Card-title'>
+			
+				<a href="/2018/05/17/使用theos肆无忌惮的Hook/">
+			
+			使用theos肆无忌惮的Hook</a>
+		</h3>
+		<div class="Card-meta">
+			<div class='Card-tags'>
+<div class="tags">
+	
+		
+			
+				<label class='tag-1'><a href="/tags/Hook/">Hook</a></label>
+			
+		
+	
+		
+			
+				<label class='tag-2'><a href="/tags/theos/">Theos</a></label>
+			
+		
+	
+		
+			
+				<label class='tag-3'><a href="/tags/tweak/">Tweak</a></label>
+			
+		
+	
+	</div>
+</div>
+			<ul>
+					<li>
+						<a href="/archives/">
+							<i class='fa fa-calendar'></i> 2018-05-17
+						</a>
+					</li>
+					
+					
+					
+			</ul>
+		</div>
+	</div>
+</div>
 
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2018/05/13/想知道的更多，先给你的APP脱壳吧/" title="想知道的更多，先给你的APP脱壳吧" itemprop="url">
-  
-
-    <time datetime="2018-05-13T08:34:10.000Z" itemprop="datePublished">2018-05-13</time>
+	
+		
 
 
-    <h1 itemprop="name">想知道的更多，先给你的APP脱壳吧</h1>
-
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2018/05/13/Cycript配合Reveal分析界面层级结构/" title="Cycript配合Reveal分析界面层级结构" itemprop="url">
-  
-
-    <time datetime="2018-05-13T07:38:33.000Z" itemprop="datePublished">2018-05-13</time>
 
 
-    <h1 itemprop="name">Cycript配合Reveal分析界面层级结构</h1>
+<div class='Card-archive' id='hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f' data-name='Mach-O文件细述' data-version=''>
+	<mark class='Card-badge'></mark>
+	<div class="Card-body">
+		<h3 class='Card-title'>
+			
+				<a href="/2018/05/17/Mach-O文件细述/">
+			
+			Mach-O文件细述</a>
+		</h3>
+		<div class="Card-meta">
+			<div class='Card-tags'>
+<div class="tags">
+	
+		
+			
+				<label class='tag-1'><a href="/tags/Mach-O/">Mach-o</a></label>
+			
+		
+	
+	</div>
+</div>
+			<ul>
+					<li>
+						<a href="/archives/">
+							<i class='fa fa-calendar'></i> 2018-05-17
+						</a>
+					</li>
+					
+					
+					
+			</ul>
+		</div>
+	</div>
+</div>
 
-  </a>
-</section>
+	
+		
 
 
-  <nav id="page-nav" class="clearfix archive-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/page/2/">Next<span></span></a>
-  </nav>
+
+
+<div class='Card-archive' id='hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072' data-name='亲，iOS逆向开发了解一下' data-version=''>
+	<mark class='Card-badge'></mark>
+	<div class="Card-body">
+		<h3 class='Card-title'>
+			
+				<a href="/2018/05/17/亲，iOS逆向开发了解一下/">
+			
+			亲，iOS逆向开发了解一下</a>
+		</h3>
+		<div class="Card-meta">
+			<div class='Card-tags'>
+<div class="tags">
+	
+		
+			
+				<label class='tag-1'><a href="/tags/iOS应用逆向工程/">Ios应用逆向工程</a></label>
+			
+		
+	
+	</div>
+</div>
+			<ul>
+					<li>
+						<a href="/archives/">
+							<i class='fa fa-calendar'></i> 2018-05-17
+						</a>
+					</li>
+					
+					
+					
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+		
+
+
+
+
+<div class='Card-archive' id='hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666' data-name='使用class-dump、HopperDisassmbler将反编译进行的更彻底' data-version=''>
+	<mark class='Card-badge'></mark>
+	<div class="Card-body">
+		<h3 class='Card-title'>
+			
+				<a href="/2018/05/15/使用class-dump、HopperDisassmbler将反编译进行的更彻底/">
+			
+			使用Class-dump、HopperDisassmbler将反编译进行的更彻底</a>
+		</h3>
+		<div class="Card-meta">
+			<div class='Card-tags'>
+<div class="tags">
+	
+		
+			
+				<label class='tag-1'><a href="/tags/HopperDisassmbler/">Hopperdisassmbler</a></label>
+			
+		
+	
+		
+			
+				<label class='tag-2'><a href="/tags/class-dump/">Class-dump</a></label>
+			
+		
+	
+	</div>
+</div>
+			<ul>
+					<li>
+						<a href="/archives/">
+							<i class='fa fa-calendar'></i> 2018-05-15
+						</a>
+					</li>
+					
+					
+					
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+		
+
+
+
+
+<div class='Card-archive' id='hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d' data-name='想知道的更多，先给你的APP脱壳吧' data-version=''>
+	<mark class='Card-badge'></mark>
+	<div class="Card-body">
+		<h3 class='Card-title'>
+			
+				<a href="/2018/05/13/想知道的更多，先给你的APP脱壳吧/">
+			
+			想知道的更多，先给你的APP脱壳吧</a>
+		</h3>
+		<div class="Card-meta">
+			<div class='Card-tags'>
+<div class="tags">
+	
+		
+			
+				<label class='tag-1'><a href="/tags/脱壳/">脱壳</a></label>
+			
+		
+	
+	</div>
+</div>
+			<ul>
+					<li>
+						<a href="/archives/">
+							<i class='fa fa-calendar'></i> 2018-05-13
+						</a>
+					</li>
+					
+					
+					
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+		
+
+
+
+
+<div class='Card-archive' id='hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7' data-name='Cycript配合Reveal分析界面层级结构' data-version=''>
+	<mark class='Card-badge'></mark>
+	<div class="Card-body">
+		<h3 class='Card-title'>
+			
+				<a href="/2018/05/13/Cycript配合Reveal分析界面层级结构/">
+			
+			Cycript配合Reveal分析界面层级结构</a>
+		</h3>
+		<div class="Card-meta">
+			<div class='Card-tags'>
+<div class="tags">
+	
+		
+			
+				<label class='tag-1'><a href="/tags/Cycript操作/">Cycript操作</a></label>
+			
+		
+	
+		
+			
+				<label class='tag-2'><a href="/tags/Reveal/">Reveal</a></label>
+			
+		
+	
+	</div>
+</div>
+			<ul>
+					<li>
+						<a href="/archives/">
+							<i class='fa fa-calendar'></i> 2018-05-13
+						</a>
+					</li>
+					
+					
+					
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+		
+
+
+
+
+<div class='Card-archive' id='hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5' data-name='Mac通过SSH连接iPhone' data-version=''>
+	<mark class='Card-badge'></mark>
+	<div class="Card-body">
+		<h3 class='Card-title'>
+			
+				<a href="/2018/05/11/Mac通过SSH连接iPhone/">
+			
+			Mac通过SSH连接iPhone</a>
+		</h3>
+		<div class="Card-meta">
+			<div class='Card-tags'>
+<div class="tags">
+	
+		
+			
+				<label class='tag-1'><a href="/tags/Mac访问iPhone/">Mac访问iphone</a></label>
+			
+		
+	
+	</div>
+</div>
+			<ul>
+					<li>
+						<a href="/archives/">
+							<i class='fa fa-calendar'></i> 2018-05-11
+						</a>
+					</li>
+					
+					
+					
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+	</div>
+
+
+	
 
   </div>
-</div>
 
-      </div>
-      <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		<a href="https://github.com/https://github.com/ITEnthusiast" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<a href="mailto:admin@caopei.cn" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
-		
-		<a href="/about" target="_blank" title="曹培">曹培</a>
-		
-		
-		</p>
-</div>
-</footer>
-      <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
   
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
+
+<footer id='footer'>
+    <div class='footer-copyright'>
+        <div>
+            <p> Copyright by <a href="">曹培 </a> @ 2018</p>
+            <p>Designed by: <i class="fas fa-paint-brush"></i> <a href="https://moober.cn">Moober</a> and <i class="fas fa-graduation-cap"></i> <a href="https://qutang.github.io">Qu Tang</a> &bull; Theme: <a href="https://qutang.github.io/cutie/">Cutie 2.1.1-Taurus</a> &bull; Powered by <a href="http://hexo.io">Hexo.</a></p>
+        </div>
+    </div>
+    
+    <div class='footer-social'>
         
-    }
-  });
-});
-</script>
+            
+                
+                    <div class='footer-social-item'><a href='https://github.com/ITEnthusiast' target='_blank' ><i class="fab fa-github fa-2x" aria-hidden="true"></i></a></div>
+                
+            
+                
+                    <div class='footer-social-item'><a href='https://www.jianshu.com/u/c3199741ad2c' target='_blank' ><i class="fab fa-简书 fa-2x" aria-hidden="true"></i></a></div>
+                
+            
+        
+    </div>
+</footer>
+
+  <br>
+
+  <div id="footer-nav" class='footer-nav'>
+		
 
 
 
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+<nav id="nav">
+	
+	
+	
+	<div class='nav-item' id='nav-item-archive'>
+		
+				<div class='nav-icon active_dot'>
+				
+			<a href="/archives/" title='Archives'>
+			<img src="/images/icons/blue-shadow/archive.svg" alt="">
+			</a>
+		</div>
 	</div>
-	<script src="/js/totop.js"></script>
+	<div class='nav-item' id='nav-item-search'>
+		
+		<div class='nav-icon'>
+		
+			<a href="/search/" title='Search'>
+			<img src="/images/icons/blue-shadow/search.svg" alt="">
+			</a>
+		</div>
+	</div>
+	<div class="nav-item" id='nav-item-more'>
+		<div class="nav-icon">
+				<a href='#' onclick='onClickMenuIcon(event);' ontouchstart='onClickMenuIcon(event);'>
+				<img src="/images/icons/blue-shadow/menu.svg" alt="">
+				</a>
+		</div>
+		<div class="nav-more-menu">
+				<i class="far fa-times-circle" id='nav-more-menu-close' onclick='onClickNavMenuClose(event);' ontouchstart='onClickNavMenuClose(event);'></i>
+		
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/iOS/">
+						<span>Ios</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/ReactNative/">
+						<span>Reactnative</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/逆向开发/">
+						<span>逆向开发</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/Assembly/">
+						<span>Assembly</span>
+					</a>
+				</div>
+		</div>
+		
+		<div class='nav-more-item'>
+				<div class="nav-name">
+					<a class='nav-link' href="/categories/OC进阶语法/">
+						<span>Oc进阶语法</span>
+					</a>
+				</div>
+		</div>
+		
+	</div>
+	</div>
+</nav>
 
-<!-- Totop End -->
+	</div>
 
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+  
 
 
-<!-- MathJax End -->
 
-<!-- Tiny_search Begin -->
+    
 
-<!-- Tiny_search End -->
 
-    </body>
-   </html>
+
+
+
+
+
+    <script src="/js/lightgallery.min.js"></script>
+<script src="/js/lg-zoom.min.js"></script>
+<script type='text/javascript'>
+    $(document).ready(function() {
+        $("#lightgallery").lightGallery(); 
+        $(".article-content img").each(function(){
+            console.log($(this).attr('src'))
+            $(this).attr('data-src', $(this).attr('src')).lightGallery({
+                selector: 'this'
+            })
+        });
+    });
+</script>
+
+
+
+
+
+
+<script type='text/javascript'>
+
+  
+    loadjs(['/libs/jshashes/hashes.min.js', '/libs/js-cookie/src/js.cookie.js', '/js/post.v2.js'], 'post-version');
+    loadjs.ready('post-version', {
+      success: function(){
+        console.log('ready to run badge script')
+        
+          
+          
+          
+          // show/hide post unread badage
+          var postLinks = document.querySelectorAll('#hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f .Card-title a, #hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f .Card-excerpt a, #hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f .Card-figure a');
+          new Postv2('hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f').showUnreadNotification('hashit_10facda6dee2a006eb68e1cc8efa517a5f668309fee7a2116edd67b70b291b48', function(){
+            console.log('show badge for 2018/06/14/RN准备篇-web知识点扫盲/ : hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f');
+            var postBadge = document.querySelector('#hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f mark.Card-badge');
+            $(postBadge).fadeIn();
+          }, function(){
+            console.log('hide badge for 2018/06/14/RN准备篇-web知识点扫盲/ : hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f');
+            var postBadge = document.querySelector('#hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f mark.Card-badge');
+            $(postBadge).fadeOut();
+          }); 
+          // update cookie upon click the post and hide badge immediately
+          for(var i = 0;i < postLinks.length; i++){
+            postLinks[i].onclick = function(){
+              new Postv2('hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f').update('hashit_10facda6dee2a006eb68e1cc8efa517a5f668309fee7a2116edd67b70b291b48', function(){
+                console.log('called');
+                var postBadge = document.querySelector('#hashit_b70519f747a06df65ad038cd377d837f8ca300d22c1736b08375977d528e808f mark.Card-badge');
+                $(postBadge).fadeOut();
+              });
+            }
+          }
+          
+        
+          
+          
+          
+          // show/hide post unread badage
+          var postLinks = document.querySelectorAll('#hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e .Card-title a, #hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e .Card-excerpt a, #hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e .Card-figure a');
+          new Postv2('hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e').showUnreadNotification('hashit_41afbfa0b74c4b6ead7e012852af8246de897320bd72606721d41e51e137a151', function(){
+            console.log('show badge for 2018/05/31/浅析KVO、KVC/ : hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e');
+            var postBadge = document.querySelector('#hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e mark.Card-badge');
+            $(postBadge).fadeIn();
+          }, function(){
+            console.log('hide badge for 2018/05/31/浅析KVO、KVC/ : hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e');
+            var postBadge = document.querySelector('#hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e mark.Card-badge');
+            $(postBadge).fadeOut();
+          }); 
+          // update cookie upon click the post and hide badge immediately
+          for(var i = 0;i < postLinks.length; i++){
+            postLinks[i].onclick = function(){
+              new Postv2('hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e').update('hashit_41afbfa0b74c4b6ead7e012852af8246de897320bd72606721d41e51e137a151', function(){
+                console.log('called');
+                var postBadge = document.querySelector('#hashit_265f5ecbc12b88b1cdf65d650af344046ab240944e715394277294b00d01cd7e mark.Card-badge');
+                $(postBadge).fadeOut();
+              });
+            }
+          }
+          
+        
+          
+          
+          
+          // show/hide post unread badage
+          var postLinks = document.querySelectorAll('#hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5 .Card-title a, #hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5 .Card-excerpt a, #hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5 .Card-figure a');
+          new Postv2('hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5').showUnreadNotification('hashit_4dfd850e2b74907718ca2e3073ced6de5bc679f53c3bd48ec0602cfb51261973', function(){
+            console.log('show badge for 2018/05/28/iOS签名机制/ : hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5');
+            var postBadge = document.querySelector('#hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5 mark.Card-badge');
+            $(postBadge).fadeIn();
+          }, function(){
+            console.log('hide badge for 2018/05/28/iOS签名机制/ : hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5');
+            var postBadge = document.querySelector('#hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5 mark.Card-badge');
+            $(postBadge).fadeOut();
+          }); 
+          // update cookie upon click the post and hide badge immediately
+          for(var i = 0;i < postLinks.length; i++){
+            postLinks[i].onclick = function(){
+              new Postv2('hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5').update('hashit_4dfd850e2b74907718ca2e3073ced6de5bc679f53c3bd48ec0602cfb51261973', function(){
+                console.log('called');
+                var postBadge = document.querySelector('#hashit_448dc84062fe200c3fc6daac0bb6e746839af497b4a27e215094b4fcda1a5fb5 mark.Card-badge');
+                $(postBadge).fadeOut();
+              });
+            }
+          }
+          
+        
+          
+          
+          
+          // show/hide post unread badage
+          var postLinks = document.querySelectorAll('#hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249 .Card-title a, #hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249 .Card-excerpt a, #hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249 .Card-figure a');
+          new Postv2('hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249').showUnreadNotification('hashit_bbd93caaec634ed42dd4585b9815b9b4da13d5997c76bc421919575e04e0e0ce', function(){
+            console.log('show badge for 2018/05/17/使用theos肆无忌惮的Hook/ : hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249');
+            var postBadge = document.querySelector('#hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249 mark.Card-badge');
+            $(postBadge).fadeIn();
+          }, function(){
+            console.log('hide badge for 2018/05/17/使用theos肆无忌惮的Hook/ : hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249');
+            var postBadge = document.querySelector('#hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249 mark.Card-badge');
+            $(postBadge).fadeOut();
+          }); 
+          // update cookie upon click the post and hide badge immediately
+          for(var i = 0;i < postLinks.length; i++){
+            postLinks[i].onclick = function(){
+              new Postv2('hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249').update('hashit_bbd93caaec634ed42dd4585b9815b9b4da13d5997c76bc421919575e04e0e0ce', function(){
+                console.log('called');
+                var postBadge = document.querySelector('#hashit_735577cbdebfa7bbdede4941117bdb36e47d0da1a4dddcafbb8afccb92699249 mark.Card-badge');
+                $(postBadge).fadeOut();
+              });
+            }
+          }
+          
+        
+          
+          
+          
+          // show/hide post unread badage
+          var postLinks = document.querySelectorAll('#hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f .Card-title a, #hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f .Card-excerpt a, #hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f .Card-figure a');
+          new Postv2('hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f').showUnreadNotification('hashit_bacbc0fad85ea1c5e7ab808f20d19a91799d2b0ff67fcbb8cd1cb44b07b47031', function(){
+            console.log('show badge for 2018/05/17/Mach-O文件细述/ : hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f');
+            var postBadge = document.querySelector('#hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f mark.Card-badge');
+            $(postBadge).fadeIn();
+          }, function(){
+            console.log('hide badge for 2018/05/17/Mach-O文件细述/ : hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f');
+            var postBadge = document.querySelector('#hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f mark.Card-badge');
+            $(postBadge).fadeOut();
+          }); 
+          // update cookie upon click the post and hide badge immediately
+          for(var i = 0;i < postLinks.length; i++){
+            postLinks[i].onclick = function(){
+              new Postv2('hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f').update('hashit_bacbc0fad85ea1c5e7ab808f20d19a91799d2b0ff67fcbb8cd1cb44b07b47031', function(){
+                console.log('called');
+                var postBadge = document.querySelector('#hashit_1db6f20a6ae5ed55b1391b903a34b03f4dbcb6c037b3d759a79edae5498c3d1f mark.Card-badge');
+                $(postBadge).fadeOut();
+              });
+            }
+          }
+          
+        
+          
+          
+          
+          // show/hide post unread badage
+          var postLinks = document.querySelectorAll('#hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072 .Card-title a, #hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072 .Card-excerpt a, #hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072 .Card-figure a');
+          new Postv2('hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072').showUnreadNotification('hashit_9dcdf831811fee56daced0ee1215eda1036f3b482e9dbc59a57525a96abf26ea', function(){
+            console.log('show badge for 2018/05/17/亲，iOS逆向开发了解一下/ : hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072');
+            var postBadge = document.querySelector('#hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072 mark.Card-badge');
+            $(postBadge).fadeIn();
+          }, function(){
+            console.log('hide badge for 2018/05/17/亲，iOS逆向开发了解一下/ : hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072');
+            var postBadge = document.querySelector('#hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072 mark.Card-badge');
+            $(postBadge).fadeOut();
+          }); 
+          // update cookie upon click the post and hide badge immediately
+          for(var i = 0;i < postLinks.length; i++){
+            postLinks[i].onclick = function(){
+              new Postv2('hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072').update('hashit_9dcdf831811fee56daced0ee1215eda1036f3b482e9dbc59a57525a96abf26ea', function(){
+                console.log('called');
+                var postBadge = document.querySelector('#hashit_e780c6aa57118c7db699241336f01dd0a144134b52b54a289613c1ad898b7072 mark.Card-badge');
+                $(postBadge).fadeOut();
+              });
+            }
+          }
+          
+        
+          
+          
+          
+          // show/hide post unread badage
+          var postLinks = document.querySelectorAll('#hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666 .Card-title a, #hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666 .Card-excerpt a, #hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666 .Card-figure a');
+          new Postv2('hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666').showUnreadNotification('hashit_f8850e948dc83d2526e20d76c76d3f789cfd2a8b167be59045784dd7eb6400e9', function(){
+            console.log('show badge for 2018/05/15/使用class-dump、HopperDisassmbler将反编译进行的更彻底/ : hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666');
+            var postBadge = document.querySelector('#hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666 mark.Card-badge');
+            $(postBadge).fadeIn();
+          }, function(){
+            console.log('hide badge for 2018/05/15/使用class-dump、HopperDisassmbler将反编译进行的更彻底/ : hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666');
+            var postBadge = document.querySelector('#hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666 mark.Card-badge');
+            $(postBadge).fadeOut();
+          }); 
+          // update cookie upon click the post and hide badge immediately
+          for(var i = 0;i < postLinks.length; i++){
+            postLinks[i].onclick = function(){
+              new Postv2('hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666').update('hashit_f8850e948dc83d2526e20d76c76d3f789cfd2a8b167be59045784dd7eb6400e9', function(){
+                console.log('called');
+                var postBadge = document.querySelector('#hashit_d969ed58a35af90a0a8abe87341c729662a89ef54d8b9da25f7a0a6e67500666 mark.Card-badge');
+                $(postBadge).fadeOut();
+              });
+            }
+          }
+          
+        
+          
+          
+          
+          // show/hide post unread badage
+          var postLinks = document.querySelectorAll('#hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d .Card-title a, #hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d .Card-excerpt a, #hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d .Card-figure a');
+          new Postv2('hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d').showUnreadNotification('hashit_d30f3168190cf0bab55621b69879f508701c9942ac3cdaa622a064730276f9e2', function(){
+            console.log('show badge for 2018/05/13/想知道的更多，先给你的APP脱壳吧/ : hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d');
+            var postBadge = document.querySelector('#hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d mark.Card-badge');
+            $(postBadge).fadeIn();
+          }, function(){
+            console.log('hide badge for 2018/05/13/想知道的更多，先给你的APP脱壳吧/ : hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d');
+            var postBadge = document.querySelector('#hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d mark.Card-badge');
+            $(postBadge).fadeOut();
+          }); 
+          // update cookie upon click the post and hide badge immediately
+          for(var i = 0;i < postLinks.length; i++){
+            postLinks[i].onclick = function(){
+              new Postv2('hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d').update('hashit_d30f3168190cf0bab55621b69879f508701c9942ac3cdaa622a064730276f9e2', function(){
+                console.log('called');
+                var postBadge = document.querySelector('#hashit_47b089fe7f637628bdb19cf7f0c5f697f1fd2a1f422a41ee40ef5505e4f4436d mark.Card-badge');
+                $(postBadge).fadeOut();
+              });
+            }
+          }
+          
+        
+          
+          
+          
+          // show/hide post unread badage
+          var postLinks = document.querySelectorAll('#hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7 .Card-title a, #hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7 .Card-excerpt a, #hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7 .Card-figure a');
+          new Postv2('hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7').showUnreadNotification('hashit_76edb8ae020446d8014a49ddee6d7ca4fd15c98f31d36e056e3eabea9dadf3d2', function(){
+            console.log('show badge for 2018/05/13/Cycript配合Reveal分析界面层级结构/ : hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7');
+            var postBadge = document.querySelector('#hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7 mark.Card-badge');
+            $(postBadge).fadeIn();
+          }, function(){
+            console.log('hide badge for 2018/05/13/Cycript配合Reveal分析界面层级结构/ : hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7');
+            var postBadge = document.querySelector('#hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7 mark.Card-badge');
+            $(postBadge).fadeOut();
+          }); 
+          // update cookie upon click the post and hide badge immediately
+          for(var i = 0;i < postLinks.length; i++){
+            postLinks[i].onclick = function(){
+              new Postv2('hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7').update('hashit_76edb8ae020446d8014a49ddee6d7ca4fd15c98f31d36e056e3eabea9dadf3d2', function(){
+                console.log('called');
+                var postBadge = document.querySelector('#hashit_d9d1793e59ab718d3ae26982b39e73899f578be837af0c5d01faf8292f4088c7 mark.Card-badge');
+                $(postBadge).fadeOut();
+              });
+            }
+          }
+          
+        
+          
+          
+          
+          // show/hide post unread badage
+          var postLinks = document.querySelectorAll('#hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5 .Card-title a, #hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5 .Card-excerpt a, #hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5 .Card-figure a');
+          new Postv2('hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5').showUnreadNotification('hashit_1aaf0b9a8435cbb5e08446a77970d1d109375c10ecf7586b8b9efef949962785', function(){
+            console.log('show badge for 2018/05/11/Mac通过SSH连接iPhone/ : hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5');
+            var postBadge = document.querySelector('#hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5 mark.Card-badge');
+            $(postBadge).fadeIn();
+          }, function(){
+            console.log('hide badge for 2018/05/11/Mac通过SSH连接iPhone/ : hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5');
+            var postBadge = document.querySelector('#hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5 mark.Card-badge');
+            $(postBadge).fadeOut();
+          }); 
+          // update cookie upon click the post and hide badge immediately
+          for(var i = 0;i < postLinks.length; i++){
+            postLinks[i].onclick = function(){
+              new Postv2('hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5').update('hashit_1aaf0b9a8435cbb5e08446a77970d1d109375c10ecf7586b8b9efef949962785', function(){
+                console.log('called');
+                var postBadge = document.querySelector('#hashit_76fa9c8783ef9deec952d5b78dcbbd6b113bc524edd1c1bb60b50b37c83d7bb5 mark.Card-badge');
+                $(postBadge).fadeOut();
+              });
+            }
+          }
+          
+        
+      }
+    })
+  
+</script>
+
+
+
+<!-- <script src="/js/post.js"></script> -->
+
+<script src="/js/headroom.min.js"></script>
+
+<script data-no-instant type='text/javascript'>
+
+initHeadroom();
+
+changeLayoutOnTouchScreen();
+
+// 
+// var post = new Post('', '');
+// $('.Card-archive').each(function(){
+//     var post_url = $(this).attr('id');
+//     var true_url = $(this).find('.Card-title a').first().attr('href');
+//     var card = this;
+//     post.getCommentCount(post_url, function(count){
+//         $(card).find('.card-comment-count').first().text(count);
+//     });
+//     post.getVisitCount(post_url, function(count){
+//         $(card).find('.card-visit-count').first().text(count);
+//     });
+    
+// });
+// 
+</script>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

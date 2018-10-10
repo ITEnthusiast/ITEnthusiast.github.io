@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://itenthusiast.github.io/"/>
-  <updated>2018-10-10T02:51:56.786Z</updated>
+  <updated>2018-06-14T09:07:46.000Z</updated>
   <id>https://itenthusiast.github.io/</id>
   
   <author>
@@ -15,20 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>测试</title>
-    <link href="https://itenthusiast.github.io/2018/10/10/%E6%B5%8B%E8%AF%95/"/>
-    <id>https://itenthusiast.github.io/2018/10/10/测试/</id>
-    <published>2018-10-10T02:51:56.000Z</published>
-    <updated>2018-10-10T02:51:56.786Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>RN准备篇-web知识点扫盲</title>
@@ -378,8 +364,8 @@
     <title>探索函数调用得本质之旅</title>
     <link href="https://itenthusiast.github.io/2018/04/19/%E6%8E%A2%E7%B4%A2%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%BE%97%E6%9C%AC%E8%B4%A8%E4%B9%8B%E6%97%85/"/>
     <id>https://itenthusiast.github.io/2018/04/19/探索函数调用得本质之旅/</id>
-    <published>2018-04-19T09:11:12.000Z</published>
-    <updated>2018-05-17T01:41:08.000Z</updated>
+    <published>2018-04-19T09:11:00.000Z</published>
+    <updated>2018-10-10T04:53:22.108Z</updated>
     
     <content type="html"><![CDATA[<p></p><h2><br>引言<br></h2><p></p><p><h7><br>编程人员在日常编码工作中难免会使用一个“工具”来辅助我们实现一些功能。这个“工具”的具体体现大概就是各种各样的函数，也有些语言称它为方法。在调用函数的流程中需要注意几个关键因素：函数名、参数、返回值；其中函数名我们通过阅读一些文档可以了解到，包括其具体实现的功能。这里就后两项作为切入点，利用汇编语言从内存层面简单剖析一下函数调用的实质。<br></h7></p><p></p><h2><br>CPU执行指令依据<br></h2><p></p><p><h7><br>一个程序被运行，这个被编译、链接后的“指令集”会被加载到运行设备的内存中，等待CPU一条条执行。内存为该程序分配的这段内存空间中，从逻辑角度根据数据功能类分为一个个段（实际上是一整段连续的内存空间），大致分为代码段、数据段、堆栈段、附加段（内存中数据都是二进制数据，对于不同段中数据的不同功能取决于CPU是依据哪类寄存器找到的。比如CS寄存器配合IP寄存器指定的是代码段，DS寄存器配合着通用寄存器指定的是数据段，SS寄存器配合着SP指定的则是栈段）。我们的代码指令被放入代码段，CPU也是首先依据CS:IP找到该段地址并执行其中的内容，函数相关操作则是利用栈段来实现。<br></h7></p><p></p><h2><br>函数调用流程<br></h2><p></p><p><h7><br>实际编程过程中一些高级语言不需要程序员手动分配栈段大小，这部分工作由编译器来完成。先假设内存中一段空间被分配为栈段，栈段大小确定后，栈底处于地址值最大的位置，当有数据PUSH进来的时候栈顶地址值（由寄存器SP来记录）会随之变小，反之亦反。现在有函数调用执行需要用到这部分空间来完成操作。首先将函数参数push入栈；在使用call命令调用函数名时，会将返回地址push入栈；寄存器BP的值记录着调用该函数的上一级函数的SP值（寄存器BP的功能是用来辅助SP完成栈段的一些操作），此时将BP的值PUSH入栈保存；由于SP的值是随着出入栈的操作一直变化着，这里使用BP来记录此刻SP的值；函数内可能会有类似局部变量等数据需要占用空间，这里需要提前预留指定的空间大小（例如：10个字节）：需要SP的值减10（由于这部分空间可能对于一些函数是不需要的，所以不同平台的编译器的做法也有不同。如图所示可以看出VC++6.0和Xcode处理相同代码的优化区别）；<img src="/2018/04/19/探索函数调用得本质之旅/1.jpg" class="[VC++6.0和xCode编译器得优化区别]" title="[100] [100]"><br><br>如果函数内可能会使用到其他寄存器，特别是一些寄存器数量不是很多的平台，这里需要做保护处理，将要用的寄存器之前的值PUSH入栈；在真正实现本函数功能之前还有一个有关安全的操作需要处理，就是讲预留出来的局部变量空间统一填充指定的数据（这里使用CC填充，原因是CC有在系统层面代表着暂定，至少没有意外的危险），因为不确定这段栈段空间之前存过什么数据，可能会有风险。填充的方法就是利用寄存器ES配合着寄存器DI指定这段空间的地址，使用stosw命令反复执行；到此为止，准备工作算是基本完成了，接着就是实现函数功能体部分了，而这部分准备工作实际工作中往往由对应的编译器来完成。执行完业务逻辑代码后，沿着准备阶段相反的流程恢复栈段空间；POP出栈之前受保护的寄存器值；将BP的值赋值给SP来恢复“栈顶指针”SP预留空间之前的值；此时栈顶元素是BP之前存放进来的数值，需要POP出栈给BP寄存器；执行ret命令将函数的返回地址出栈，此时通过修改SP的值至栈底，方法就是增加SP的值（此数值就是之前PUSH进栈参数的字节数）达到恢复栈平衡。假若此函数中又调用了其他函数，从内存角度看的话是继续向内存地址减小的方向叠加数据，操作流程同以上过程，栈段剩余内存空间也会随之相应减少。所以程序如果出现死循环情况，栈段空间迟早会被耗完，所以在使用递归调用函数的时候一定要注意结束条件。<br></h7><br><img src="/2018/04/19/探索函数调用得本质之旅/2.png" class="[函数调用流程]" title="[100] [100]"></p><p></p><h2><br>汇编语言描述函数调用流程<br></h2><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">push 参数</span><br><span class="line">call 函数名</span><br><span class="line">push bp</span><br><span class="line">mov bp, sp</span><br><span class="line">sub sp, 10</span><br><span class="line">push ai</span><br><span class="line">使用CC（INT 3）填充局部变量空间</span><br><span class="line">执行业务逻辑</span><br><span class="line">pop ai</span><br><span class="line">mov sp, bp</span><br><span class="line">pop bp</span><br><span class="line">ret</span><br><span class="line">恢复栈平衡</span><br></pre></td></tr></table></figure><p></p><p></p><h2>参考文献：</h2><br><blockquote><p>第二章 寄存器；第四章 第一个程序；第十章 CALL和RET指令</p><footer><strong>汇编语言（第三版）</strong><cite>王爽（著）</cite></footer></blockquote><p></p>]]></content>
     
@@ -397,6 +383,22 @@
     
     
       <category term="函数调用流程" scheme="https://itenthusiast.github.io/tags/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B/"/>
+    
+      <category term="测试Tag" scheme="https://itenthusiast.github.io/tags/%E6%B5%8B%E8%AF%95Tag/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>测试</title>
+    <link href="https://itenthusiast.github.io/2016/10/01/%E6%B5%8B%E8%AF%95/"/>
+    <id>https://itenthusiast.github.io/2016/10/01/测试/</id>
+    <published>2016-10-01T02:51:00.000Z</published>
+    <updated>2018-10-10T10:46:14.740Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
     
   </entry>
   
